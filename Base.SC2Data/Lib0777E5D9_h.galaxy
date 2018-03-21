@@ -1,0 +1,314 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Trials
+//--------------------------------------------------------------------------------------------------
+// Structures
+struct lib0777E5D9_gs_AbilityList {
+    int lv_container;
+    int lv_closeButton;
+    int lv_closeButtonImage;
+    int lv_listbox;
+    int lv_castButton;
+    int lv_dataID;
+    string[16] lv_data;
+};
+
+struct lib0777E5D9_gs_WeaponListByRace {
+    int lv_dataID;
+    string[256] lv_data;
+    int lv_listbox;
+};
+
+struct lib0777E5D9_gs_UnitData {
+    string lv_name;
+};
+
+struct lib0777E5D9_gs_UnitType {
+    lib0777E5D9_gs_UnitData[512] lv_unitData;
+    int lv_dataID;
+    int lv_listbox;
+};
+
+struct lib0777E5D9_gs_UnitRace {
+    lib0777E5D9_gs_UnitType[4] lv_types;
+};
+
+struct lib0777E5D9_gs_UnitList {
+    string[512] lv_units;
+    int lv_unitID;
+    string lv_selectedUnit;
+    int lv_container;
+    int lv_raceDropdown;
+    int lv_typeDropdown;
+    lib0777E5D9_gs_UnitRace[4] lv_races;
+};
+
+struct lib0777E5D9_gs_UpgData {
+    string lv_name;
+    string lv_icon;
+    int lv_image;
+    int lv_button;
+};
+
+struct lib0777E5D9_gs_UpgType {
+    lib0777E5D9_gs_UpgData[256] lv_data;
+    int lv_dataID;
+};
+
+struct lib0777E5D9_gs_UpgRace {
+    lib0777E5D9_gs_UpgType[6] lv_types;
+};
+
+struct lib0777E5D9_gs_Upgrades {
+    bool lv_isReady;
+    int[4] lv_containers;
+    int[4] lv_containerNames;
+    int lv_closeButtonContainer;
+    int lv_closeButton;
+    int lv_closeButtonImage;
+    lib0777E5D9_gs_UpgRace[4] lv_races;
+    string lv_selectedUpgrade;
+};
+
+struct lib0777E5D9_gs_MessageArea {
+    int lv_container;
+    int[8] lv_messages;
+    int lv_messageCount;
+};
+
+struct lib0777E5D9_gs_HotkeySettings {
+    int lv_placeUnitsToggle;
+    int lv_deleteSelection;
+    int lv_listsToggle;
+    int lv_upgradeListToggle;
+    int lv_moveUnitToggle;
+};
+
+struct lib0777E5D9_gs_PlayerDropdown {
+    int lv_container;
+    int lv_list;
+    string lv_selectedPlayerRace;
+};
+
+struct lib0777E5D9_gs_UnitProps {
+    int lv_container;
+    int lv_name;
+    string[16] lv_labelStrings;
+    int lv_labelStringCount;
+    int[16] lv_editBoxes;
+    int lv_closeButton;
+    int lv_closeButtonImage;
+    int lv_confirmButton;
+};
+
+struct lib0777E5D9_gs_WeaponProps {
+    int lv_container;
+    int lv_weaponDropdown;
+    int lv_addWeaponButton;
+    int lv_deleteWeaponButton;
+    int[2] lv_checkboxes;
+    string[16] lv_labelStrings;
+    int lv_labelStringCount;
+    int[16] lv_editBoxes;
+    int lv_closeButton;
+    int lv_closeButtonImage;
+    int lv_confirmButton;
+};
+
+struct lib0777E5D9_gs_WeaponLists {
+    int lv_container;
+    int lv_raceDropdown;
+    lib0777E5D9_gs_WeaponListByRace[4] lv_weaponLists;
+    int lv_closeButton;
+    int lv_closeButtonImage;
+    int lv_confirmButton;
+};
+
+struct lib0777E5D9_gs_UI {
+    lib0777E5D9_gs_AbilityList lv_abilities;
+    lib0777E5D9_gs_UnitList lv_unitList;
+    lib0777E5D9_gs_Upgrades lv_tech;
+    lib0777E5D9_gs_UnitProps lv_unitPanel;
+    lib0777E5D9_gs_WeaponProps lv_weaponProperties;
+    lib0777E5D9_gs_PlayerDropdown lv_playerList;
+    lib0777E5D9_gs_WeaponLists lv_weaponList;
+    lib0777E5D9_gs_HotkeySettings lv_hotkeys;
+    lib0777E5D9_gs_MessageArea lv_messages;
+};
+
+struct lib0777E5D9_gs_Weapon {
+    string lv_name;
+    fixed lv_damage;
+    fixed lv_range;
+    fixed lv_attackSpeed;
+    fixed lv_damagePoint;
+    fixed lv_scanRange;
+    fixed lv_splashRadius;
+    fixed lv_delayMin;
+    fixed lv_delayMax;
+};
+
+struct lib0777E5D9_gs_UnitProperties {
+    unit lv_unit;
+    unitgroup lv_unitGroup;
+    fixed lv_hP;
+    fixed lv_shields;
+    fixed lv_mP;
+    fixed lv_speed;
+    fixed lv_armor;
+    fixed lv_shieldArmor;
+    fixed lv_maxHP;
+    fixed lv_maxShields;
+    fixed lv_maxMP;
+    fixed lv_maxSpeed;
+    fixed lv_facingAngle;
+    lib0777E5D9_gs_Weapon lv_weapon;
+};
+
+struct lib0777E5D9_gs_Player {
+    bool lv_hasModAccess;
+    bool lv_isPlacingUnits;
+    bool lv_isMovingUnits;
+    bool lv_isCastingSpells;
+    actor lv_cursorModel;
+    point lv_cursorPosition;
+    bool lv_leftClickPressed;
+    lib0777E5D9_gs_UnitProperties lv_selectedUnitProperties;
+};
+
+struct lib0777E5D9_gs_App {
+    lib0777E5D9_gs_Player[16] lv_players;
+    lib0777E5D9_gs_UI lv_interface;
+    bool lv_forceAccessForP1;
+};
+
+struct lib0777E5D9_gs_Struct {
+    int lv_x;
+};
+
+// Variable Declarations
+lib0777E5D9_gs_App lib0777E5D9_gv_app;
+
+// Function Declarations
+void lib0777E5D9_gf_AddAbilityToList (string lp_listName, string lp_effectName, int lp_listbox, playergroup lp_players);
+void lib0777E5D9_gf_GetTargetFilters (string lp_weapon, int lp_unitOwner, int lp_modder);
+void lib0777E5D9_gf_LoadWeaponData ();
+void lib0777E5D9_gf_UpdateUnitWeaponDropdown (unit lp_unit, int lp_dropdown);
+void lib0777E5D9_gf_CreateWeaponListCloseButton (int lp_sizeX, int lp_sizeY, string lp_image);
+void lib0777E5D9_gf_PlaceUnit (int lp_playerPlacingUnit, int lp_playerRecievingUnit, string lp_unit);
+void lib0777E5D9_gf_LoadUnitData ();
+void lib0777E5D9_gf_AddUnitData (int lp_raceID, int lp_typeID, int lp_unitID, string lp_name, int lp_listbox);
+int lib0777E5D9_gf_StringShortRaceToInt (string lp_race);
+int lib0777E5D9_gf_UnitTypeToInt (string lp_objectType);
+void lib0777E5D9_gf_CreateUpgradeCloseButton (int lp_sizeX, int lp_sizeY, string lp_image);
+void lib0777E5D9_gf_ResizeUpgradeContainers (int lp_player);
+void lib0777E5D9_gf_DisplayAllUpgradeTables (int lp_raceID, int lp_padding);
+void lib0777E5D9_gf_DisplayUpgradeTable (int lp_containerID, int lp_rowCount, int lp_columnCount, int lp_padding, int lp_itemSpacingX, int lp_itemSpacingY, int lp_buttonX, int lp_buttonY, int lp_raceID, playergroup lp_players);
+void lib0777E5D9_gf_CreateUpgradeContainers (int lp_sizeX, int lp_sizeY, int lp_padding, string lp_background);
+void lib0777E5D9_gf_LoadUpgradeData ();
+void lib0777E5D9_gf_AddUpgradeData (int lp_raceID, int lp_typeID, int lp_upgID, string lp_name, string lp_icon, int lp_imageDialog, int lp_buttonDialog);
+int lib0777E5D9_gf_UpgTypeStringToInt (string lp_type);
+int lib0777E5D9_gf_StringRaceToInt (string lp_race);
+int lib0777E5D9_gf_RaceToInt (string lp_race);
+string lib0777E5D9_gf_GetUpgradeName (int lp_raceID, int lp_typeID, int lp_iD);
+int lib0777E5D9_gf_GetUsedUpgradeContainer (int lp_usedContainer);
+void lib0777E5D9_gf_AddMessage (text lp_text, string lp_style, playergroup lp_players);
+void lib0777E5D9_gf_RemoveMessage ();
+void lib0777E5D9_gf_LoadCategory (int lp_catalog);
+int lib0777E5D9_gf_GetUnitPlacementToggleKey ();
+int lib0777E5D9_gf_GetDeleteKey ();
+int lib0777E5D9_gf_GetListToggleKey ();
+int lib0777E5D9_gf_GetUpgradeListToggleKey ();
+int lib0777E5D9_gf_GetMoveUnitToggle ();
+void lib0777E5D9_gf_UpdateEditBox (int lp_editBox, string lp_newValue, playergroup lp_players);
+void lib0777E5D9_gf_AddRacesToDropdown (int lp_dropdown);
+int lib0777E5D9_gf_DialogAddContainer (int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, int lp_anchor, playergroup lp_players, string lp_title, string lp_background);
+int lib0777E5D9_gf_DialogAddLabel (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, text lp_text, string lp_fontStyle);
+int lib0777E5D9_gf_DialogAddEditBox (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, string lp_value, string lp_fontStyle);
+int lib0777E5D9_gf_DialogAddButton (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, text lp_text, string lp_image);
+int lib0777E5D9_gf_DialogAddImage (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_anchor, int lp_offsetX, int lp_offsetY, text lp_tooltip, string lp_file, int lp_imageType, bool lp_tiledFlag, color lp_tint, int lp_blendMode);
+int lib0777E5D9_gf_DialogAddSlider (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, fixed lp_min, fixed lp_max, fixed lp_initialValue, bool lp_toggleOnOff, fixed lp_animTime);
+int lib0777E5D9_gf_DialogAddProgressBar (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, fixed lp_min, fixed lp_max, fixed lp_current);
+int lib0777E5D9_gf_AddListBox (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, int lp_anchor, playergroup lp_players);
+int lib0777E5D9_gf_DialogAddGenericItem (int lp_dialogType, int lp_parentDialog, int lp_anchor, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, bool lp_toggle);
+int lib0777E5D9_gf_GetUpgradeIDFromXYOffset (int lp_x, int lp_y, playergroup lp_players, int lp_columnCount);
+void lib0777E5D9_gf_ToggleUpgrade (string lp_upgrade, int lp_image, int lp_player);
+void lib0777E5D9_gf_CheckUpgradeStatus (int lp_player);
+void lib0777E5D9_gf_ApplyUnitStats ();
+void lib0777E5D9_gf_SaveTargetFilters (string lp_weapon, int lp_unitOwner, int lp_modder);
+void lib0777E5D9_gf_SetUnitPropsUIStrings ();
+void lib0777E5D9_gf_AddUnitPropsUIString (string lp_string);
+void lib0777E5D9_gf_CreateUnitPanelCloseButton (int lp_sizeX, int lp_sizeY, string lp_image);
+void lib0777E5D9_gf_SetWeaponPropsUIStrings ();
+void lib0777E5D9_gf_AddWeaponPropsUIString (string lp_string);
+void lib0777E5D9_gf_CreateWeaponPropsCloseButton (int lp_sizeX, int lp_sizeY, string lp_image);
+void lib0777E5D9_gf_MultipleUnitsSelected (unitgroup lp_selection, int lp_player);
+void lib0777E5D9_gf_UpdateUnitProperties (unit lp_unit, playergroup lp_players);
+void lib0777E5D9_gf_UpdateWeaponProperties (string lp_weapon, string lp_unitName, string lp_unitType, int lp_player);
+string lib0777E5D9_gf_SearchForSplashRadius (string lp_unitType, string lp_unitName, string lp_weaponName);
+string lib0777E5D9_gf_GetWeaponDamage (string lp_unitType, string lp_unitName, string lp_weaponName, int lp_player);
+string lib0777E5D9_gf_SearchForWeaponDamageEffect (string lp_unitType, string lp_unitName, string lp_weaponName, int lp_player);
+string lib0777E5D9_gf_GetCatalogEntryRadius (string lp_catalogEntry);
+string lib0777E5D9_gf_GetCatalogEntryDamage (string lp_catalogEntry, int lp_player);
+bool lib0777E5D9_gf_HasAccess (int lp_player);
+string lib0777E5D9_gf_SplitString (string lp_string, string lp_delimiter, int lp_returnWord);
+string lib0777E5D9_gf_DecimalToHex (int lp_int);
+string lib0777E5D9_gf_ColorToHex (color lp_color);
+int lib0777E5D9_gf_GetChosenRaceID (int lp_player);
+int lib0777E5D9_gf_GetWeaponCount (unit lp_unit);
+text lib0777E5D9_gf_StringPathToText (int lp_type, string lp_entry, string lp_fieldPath);
+void lib0777E5D9_gf_ToggleGameUI (bool lp_enableUI, playergroup lp_players);
+void lib0777E5D9_gf_SetPlayerModAccess ();
+void lib0777E5D9_gf_AllyPlayersToModder ();
+void lib0777E5D9_gf_EnableModForPlayer (int lp_player);
+bool lib0777E5D9_gf_IsMovingUnits (int lp_player);
+bool lib0777E5D9_gf_IsCursorEnabled (int lp_player);
+actor lib0777E5D9_gf_GetMouseActor (int lp_player);
+point lib0777E5D9_gf_GetMouseXY (int lp_player);
+bool lib0777E5D9_gf_GetMouseLeftClick (int lp_player);
+void lib0777E5D9_gf_SetMouseCoords (int lp_player);
+void lib0777E5D9_gf_SetMouseModel (int lp_player, string lp_model, fixed lp_scale, fixed lp_opacity, color lp_tint);
+void lib0777E5D9_gf_UpdateCursorModelPositon (int lp_player);
+
+// Trigger Declarations
+trigger lib0777E5D9_gt_Initialize;
+trigger lib0777E5D9_gt_InitAbilityMenu;
+trigger lib0777E5D9_gt_ToggleAbilityMenu;
+trigger lib0777E5D9_gt_ToggleCastingAbilities;
+trigger lib0777E5D9_gt_AbilityCast;
+trigger lib0777E5D9_gt_InitWeaponsList;
+trigger lib0777E5D9_gt_SwitchWeaponLists;
+trigger lib0777E5D9_gt_ToggleWeaponsList;
+trigger lib0777E5D9_gt_UpdateWeaponProperties;
+trigger lib0777E5D9_gt_AddWeaponToUnit;
+trigger lib0777E5D9_gt_RemoveWeaponFromUnit;
+trigger lib0777E5D9_gt_InitUnitListDialog;
+trigger lib0777E5D9_gt_ShowUnitList;
+trigger lib0777E5D9_gt_SwitchUnitLists;
+trigger lib0777E5D9_gt_InitUpgradeDialog;
+trigger lib0777E5D9_gt_ToggleUpgradeUI;
+trigger lib0777E5D9_gt_InitMessageArea;
+trigger lib0777E5D9_gt_InitPlayerDropdown;
+trigger lib0777E5D9_gt_HandlePlayerDropDown;
+trigger lib0777E5D9_gt_ClearChat;
+trigger lib0777E5D9_gt_EventHandler;
+trigger lib0777E5D9_gt_CloseButtonEvents;
+trigger lib0777E5D9_gt_UpgradeButtonEvents;
+trigger lib0777E5D9_gt_UpdateUpgradeDialogStatus;
+trigger lib0777E5D9_gt_SaveUnitStats;
+trigger lib0777E5D9_gt_SaveWeaponStats;
+trigger lib0777E5D9_gt_InitUnitPropsDialog;
+trigger lib0777E5D9_gt_InitWeaponDialog;
+trigger lib0777E5D9_gt_UnitSelected;
+trigger lib0777E5D9_gt_TabPressed;
+trigger lib0777E5D9_gt_DeletePressed;
+trigger lib0777E5D9_gt_ToggleMoveUnit;
+trigger lib0777E5D9_gt_UnitListClicked;
+trigger lib0777E5D9_gt_MouseMoved;
+trigger lib0777E5D9_gt_LeftClickUp;
+trigger lib0777E5D9_gt_LeftClickDown;
+
+// Library Initialization
+void lib0777E5D9_InitVariables ();
+

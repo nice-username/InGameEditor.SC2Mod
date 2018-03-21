@@ -1,0 +1,3707 @@
+include "TriggerLibs/NativeLib"
+
+include "Lib0777E5D9_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Trials
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib0777E5D9_InitLibraries () {
+    libNtve_InitVariables();
+}
+
+// Variable Initialization
+bool lib0777E5D9_InitVariables_completed = false;
+
+void lib0777E5D9_InitVariables () {
+    int init_i1;
+    int init_i3;
+    int init_i4;
+    int init_i5;
+
+    if (lib0777E5D9_InitVariables_completed) {
+        return;
+    }
+
+    lib0777E5D9_InitVariables_completed = true;
+
+    for (init_i1 = 0; init_i1 <= 15; init_i1 += 1) {
+        lib0777E5D9_gv_app.lv_players[init_i1].lv_selectedUnitProperties.lv_unitGroup = UnitGroupEmpty();
+        lib0777E5D9_gv_app.lv_players[init_i1].lv_selectedUnitProperties.lv_weapon.lv_name = "";
+    }
+    lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_container = c_invalidDialogId;
+    lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_closeButton = c_invalidDialogControlId;
+    lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_closeButtonImage = c_invalidDialogControlId;
+    lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_listbox = c_invalidDialogControlId;
+    lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_castButton = c_invalidDialogControlId;
+    for (init_i3 = 0; init_i3 <= 15; init_i3 += 1) {
+        lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_data[init_i3] = "";
+    }
+    lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_container = lib0777E5D9_gf_DialogAddContainer(400, 600, 10, 60, c_anchorTopLeft, PlayerGroupAll(), "", null);
+    lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_raceDropdown = c_invalidDialogControlId;
+    lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_typeDropdown = c_invalidDialogControlId;
+    for (init_i3 = 0; init_i3 <= 3; init_i3 += 1) {
+        for (init_i4 = 0; init_i4 <= 3; init_i4 += 1) {
+            lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_races[init_i3].lv_types[init_i4].lv_listbox = c_invalidDialogControlId;
+        }
+    }
+    for (init_i3 = 0; init_i3 <= 3; init_i3 += 1) {
+        lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[init_i3] = c_invalidDialogId;
+    }
+    for (init_i3 = 0; init_i3 <= 3; init_i3 += 1) {
+        lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containerNames[init_i3] = c_invalidDialogControlId;
+    }
+    lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButtonContainer = c_invalidDialogId;
+    lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButton = c_invalidDialogControlId;
+    lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButtonImage = c_invalidDialogControlId;
+    for (init_i3 = 0; init_i3 <= 3; init_i3 += 1) {
+        for (init_i4 = 0; init_i4 <= 5; init_i4 += 1) {
+            for (init_i5 = 0; init_i5 <= 255; init_i5 += 1) {
+                lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[init_i3].lv_types[init_i4].lv_data[init_i5].lv_image = c_invalidDialogControlId;
+                lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[init_i3].lv_types[init_i4].lv_data[init_i5].lv_button = c_invalidDialogControlId;
+            }
+        }
+    }
+    lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_container = lib0777E5D9_gf_DialogAddContainer(330, 310, 20, 400, c_anchorBottomLeft, PlayerGroupAll(), "", "Assets\\Textures\\ui_research_frame_contentbox.dds");
+    lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_name = lib0777E5D9_gf_DialogAddLabel(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_container, 300, 32, 20, 5, PlayerGroupAll(), c_anchorTopLeft, StringExternal("Param/Value/lib_0777E5D9_FF9AA2C2"), "_UnitName");
+    for (init_i3 = 0; init_i3 <= 15; init_i3 += 1) {
+        lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_labelStrings[init_i3] = "";
+    }
+    for (init_i3 = 0; init_i3 <= 15; init_i3 += 1) {
+        lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[init_i3] = c_invalidDialogControlId;
+    }
+    lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_closeButton = c_invalidDialogControlId;
+    lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_closeButtonImage = c_invalidDialogControlId;
+    lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_confirmButton = c_invalidDialogControlId;
+    lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_container = lib0777E5D9_gf_DialogAddContainer(330, 310, 370, 400, DialogGetAnchor(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_container), PlayerGroupAll(), "", "Assets\\Textures\\ui_tooltip_frame_protoss.dds");
+    lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_weaponDropdown = lib0777E5D9_gf_DialogAddGenericItem(c_triggerControlTypePulldown, lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_container, c_anchorTopLeft, 280, 50, 10, 10, PlayerGroupAll(), false);
+    lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_addWeaponButton = c_invalidDialogControlId;
+    lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_deleteWeaponButton = c_invalidDialogControlId;
+    for (init_i3 = 0; init_i3 <= 1; init_i3 += 1) {
+        lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[init_i3] = c_invalidDialogControlId;
+    }
+    for (init_i3 = 0; init_i3 <= 15; init_i3 += 1) {
+        lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_labelStrings[init_i3] = "";
+    }
+    for (init_i3 = 0; init_i3 <= 15; init_i3 += 1) {
+        lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[init_i3] = c_invalidDialogControlId;
+    }
+    lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_closeButton = c_invalidDialogControlId;
+    lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_closeButtonImage = c_invalidDialogControlId;
+    lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_confirmButton = c_invalidDialogControlId;
+    lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_container = lib0777E5D9_gf_DialogAddContainer(300, 100, 10, 10, c_anchorTopLeft, PlayerGroupAll(), "", null);
+    lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_list = lib0777E5D9_gf_DialogAddGenericItem(c_triggerControlTypePulldown, lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_container, c_anchorTopLeft, 300, 50, 0, 0, PlayerGroupAll(), false);
+    lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_container = lib0777E5D9_gf_DialogAddContainer(330, 310, 390, 400, DialogGetAnchor(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_container), PlayerGroupAll(), "", "Assets\\Textures\\ui_tooltip_frame_storymode.dds");
+    lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_raceDropdown = c_invalidDialogControlId;
+    for (init_i3 = 0; init_i3 <= 3; init_i3 += 1) {
+        lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_weaponLists[init_i3].lv_listbox = c_invalidDialogControlId;
+    }
+    lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_closeButton = c_invalidDialogControlId;
+    lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_closeButtonImage = c_invalidDialogControlId;
+    lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_confirmButton = c_invalidDialogControlId;
+    lib0777E5D9_gv_app.lv_interface.lv_hotkeys.lv_placeUnitsToggle = c_keyTab;
+    lib0777E5D9_gv_app.lv_interface.lv_hotkeys.lv_deleteSelection = c_keyBackSpace;
+    lib0777E5D9_gv_app.lv_interface.lv_hotkeys.lv_listsToggle = c_keyPeriod;
+    lib0777E5D9_gv_app.lv_interface.lv_hotkeys.lv_upgradeListToggle = c_keyComma;
+    lib0777E5D9_gv_app.lv_interface.lv_hotkeys.lv_moveUnitToggle = c_keyM;
+    lib0777E5D9_gv_app.lv_interface.lv_messages.lv_container = c_invalidDialogId;
+    for (init_i3 = 0; init_i3 <= 7; init_i3 += 1) {
+        lib0777E5D9_gv_app.lv_interface.lv_messages.lv_messages[init_i3] = c_invalidDialogControlId;
+    }
+}
+
+// Custom Script
+//--------------------------------------------------------------------------------------------------
+// Custom Script: Test
+//--------------------------------------------------------------------------------------------------
+void TestA (structref<lib0777E5D9_gs_Struct> lp_ref)
+{
+        TriggerDebugOutput(1, IntToText(lp_ref.lv_x), true);
+        lp_ref.lv_x = 1;
+        TriggerDebugOutput(1, IntToText(lp_ref.lv_x), true);
+}
+void DoIt()
+{
+    lib0777E5D9_gs_Struct TestStruct;
+    structref<lib0777E5D9_gs_Struct> structReference=TestStruct;
+    TestA(TestStruct);
+}
+
+void lib0777E5D9_InitCustomScript () {
+}
+
+// Functions
+void lib0777E5D9_gf_AddAbilityToList (string lp_listName, string lp_effectName, int lp_listbox, playergroup lp_players) {
+    // Variable Declarations
+    int lv_iD;
+
+    // Variable Initialization
+    lv_iD = lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_dataID;
+
+    // Implementation
+    DialogControlAddItem(lp_listbox, lp_players, StringToText(lp_listName));
+    lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_data[lv_iD] = lp_effectName;
+    lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_dataID += 1;
+}
+
+void lib0777E5D9_gf_GetTargetFilters (string lp_weapon, int lp_unitOwner, int lp_modder) {
+    int init_i;
+
+    int auto622EDDEE_ae;
+    int auto622EDDEE_ai;
+    int auto1977B45F_ae;
+    int auto1977B45F_ai;
+
+    // Variable Declarations
+    string lv_filters;
+    string lv_targetList;
+    string[8] lv_targets;
+    int lv_targetID;
+    bool lv_requiresAir;
+    bool lv_requiresGround;
+
+    // Variable Initialization
+    lv_filters = CatalogFieldValueGet(c_gameCatalogWeapon, lp_weapon, "TargetFilters", lp_unitOwner);
+    lv_targetList = "";
+    for (init_i = 0; init_i <= 7; init_i += 1) {
+        lv_targets[init_i] = "";
+    }
+
+    // Implementation
+    lv_targetList = lib0777E5D9_gf_SplitString((lv_filters), ";", 0);
+    auto622EDDEE_ae = 7;
+    auto622EDDEE_ai = 1;
+    lv_targetID = 0;
+    for ( ; ( (auto622EDDEE_ai >= 0 && lv_targetID <= auto622EDDEE_ae) || (auto622EDDEE_ai <= 0 && lv_targetID >= auto622EDDEE_ae) ) ; lv_targetID += auto622EDDEE_ai ) {
+        lv_targets[lv_targetID] = lib0777E5D9_gf_SplitString(lv_targetList, ",", lv_targetID);
+    }
+    auto1977B45F_ae = 7;
+    auto1977B45F_ai = 1;
+    lv_targetID = 0;
+    for ( ; ( (auto1977B45F_ai >= 0 && lv_targetID <= auto1977B45F_ae) || (auto1977B45F_ai <= 0 && lv_targetID >= auto1977B45F_ae) ) ; lv_targetID += auto1977B45F_ai ) {
+        if ((lv_targets[lv_targetID] == "Air")) {
+            lv_requiresAir = true;
+        }
+
+        if ((lv_targets[lv_targetID] == "Ground")) {
+            lv_requiresGround = true;
+        }
+
+    }
+    if ((lv_requiresAir == true) && (lv_requiresGround == true)) {
+        libNtve_gf_SetDialogItemChecked(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[0], false, PlayerGroupSingle(lp_modder));
+        libNtve_gf_SetDialogItemChecked(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[1], false, PlayerGroupSingle(lp_modder));
+        return ;
+    }
+
+    if ((lv_requiresAir == false) && (lv_requiresGround == false)) {
+        lv_requiresAir = true;
+        lv_requiresGround = true;
+    }
+
+    if ((lv_requiresAir == true)) {
+        libNtve_gf_SetDialogItemChecked(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[0], true, PlayerGroupSingle(lp_modder));
+    }
+    else {
+        libNtve_gf_SetDialogItemChecked(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[0], false, PlayerGroupSingle(lp_modder));
+    }
+    if ((lv_requiresGround == true)) {
+        libNtve_gf_SetDialogItemChecked(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[1], true, PlayerGroupSingle(lp_modder));
+    }
+    else {
+        libNtve_gf_SetDialogItemChecked(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[1], false, PlayerGroupSingle(lp_modder));
+    }
+}
+
+void lib0777E5D9_gf_LoadWeaponData () {
+    int auto8B8D3FFF_ae;
+    int auto8B8D3FFF_ai;
+
+    // Variable Declarations
+    int lv_i;
+    string lv_weapon;
+    string lv_race;
+    int lv_raceID;
+    int lv_weaponID;
+    int lv_listbox;
+
+    // Variable Initialization
+    lv_race = "";
+    lv_listbox = c_invalidDialogControlId;
+
+    // Implementation
+    auto8B8D3FFF_ae = CatalogEntryCount(c_gameCatalogWeapon);
+    auto8B8D3FFF_ai = 1;
+    lv_i = 1;
+    for ( ; ( (auto8B8D3FFF_ai >= 0 && lv_i <= auto8B8D3FFF_ae) || (auto8B8D3FFF_ai <= 0 && lv_i >= auto8B8D3FFF_ae) ) ; lv_i += auto8B8D3FFF_ai ) {
+        lv_weapon = CatalogEntryGet(c_gameCatalogWeapon, lv_i);
+        lv_race = CatalogFieldValueGet(c_gameCatalogWeapon, lv_weapon, "EditorCategories", c_playerAny);
+        lv_race = lib0777E5D9_gf_SplitString(lv_race, ":", 1);
+        if ((((lv_weapon)) != "")) {
+            lv_raceID = lib0777E5D9_gf_StringRaceToInt(lv_race);
+            lv_weaponID = lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_weaponLists[lv_raceID].lv_dataID;
+            lv_listbox = lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_weaponLists[lv_raceID].lv_listbox;
+            lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_weaponLists[lv_raceID].lv_data[lv_weaponID] = lv_weapon;
+            lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_weaponLists[lv_raceID].lv_dataID += 1;
+            DialogControlAddItem(lv_listbox, PlayerGroupAll(), lib0777E5D9_gf_StringPathToText(c_gameCatalogWeapon, lv_weapon, "Name"));
+        }
+
+    }
+}
+
+void lib0777E5D9_gf_UpdateUnitWeaponDropdown (unit lp_unit, int lp_dropdown) {
+    int auto8EA0913F_ae;
+    int auto8EA0913F_ai;
+
+    // Variable Declarations
+    int lv_weaponID;
+    int lv_weaponCount;
+    string lv_weapon;
+    string lv_weaponName;
+
+    // Variable Initialization
+    lv_weaponCount = lib0777E5D9_gf_GetWeaponCount(lp_unit);
+    lv_weapon = "";
+    lv_weaponName = "";
+
+    // Implementation
+    DialogControlRemoveAllItems(lp_dropdown, PlayerGroupAll());
+    auto8EA0913F_ae = lv_weaponCount;
+    auto8EA0913F_ai = 1;
+    lv_weaponID = 1;
+    for ( ; ( (auto8EA0913F_ai >= 0 && lv_weaponID <= auto8EA0913F_ae) || (auto8EA0913F_ai <= 0 && lv_weaponID >= auto8EA0913F_ae) ) ; lv_weaponID += auto8EA0913F_ai ) {
+        lv_weapon = UnitWeaponGet(lp_unit, lv_weaponID);
+        lv_weaponName = CatalogFieldValueGet(c_gameCatalogWeapon, lv_weapon, "Name", c_playerAny);
+        DialogControlAddItem(lp_dropdown, PlayerGroupAll(), lib0777E5D9_gf_StringPathToText(c_gameCatalogWeapon, lv_weapon, "Name"));
+    }
+    DialogControlSelectItem(lp_dropdown, PlayerGroupAll(), 1);
+}
+
+void lib0777E5D9_gf_CreateWeaponListCloseButton (int lp_sizeX, int lp_sizeY, string lp_image) {
+    // Variable Declarations
+    int lv_container;
+    int lv_image;
+    int lv_button;
+
+    // Variable Initialization
+    lv_container = lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_container;
+    lv_image = lib0777E5D9_gf_DialogAddImage(lv_container, lp_sizeX, lp_sizeY, c_anchorTopRight, 10, 10, StringToText(""), lp_image, c_triggerImageTypeNormal, false, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), c_triggerBlendModeNormal);
+    lv_button = lib0777E5D9_gf_DialogAddButton(lv_container, lp_sizeX, lp_sizeY, 10, 10, PlayerGroupAll(), c_anchorTopRight, null, "");
+
+    // Implementation
+    lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_closeButton = lv_button;
+    lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_closeButtonImage = lv_image;
+    DialogControlFadeTransparency(lv_button, PlayerGroupAll(), 0.0, 100.0);
+}
+
+void lib0777E5D9_gf_PlaceUnit (int lp_playerPlacingUnit, int lp_playerRecievingUnit, string lp_unit) {
+    // Variable Declarations
+    point lv_mouseCoords;
+
+    // Variable Initialization
+    lv_mouseCoords = lib0777E5D9_gf_GetMouseXY(lp_playerPlacingUnit);
+
+    // Implementation
+    UnitCreate(1, lp_unit, 0, 0, lv_mouseCoords, RandomInt(0, 360));
+    SoundPlayAtPointForPlayer(SoundLink("Protoss_BuildingPlacementSmall", -1), c_maxPlayers, PlayerGroupSingle(lp_playerPlacingUnit), lv_mouseCoords, 0.0, 100.0, 0.0);
+    if ((DialogControlGetSelectedItem(lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_raceDropdown, lp_playerPlacingUnit) < 3)) {
+        UnitSetOwner(UnitLastCreated(), lp_playerRecievingUnit, true);
+    }
+
+}
+
+void lib0777E5D9_gf_LoadUnitData () {
+    int auto96F4F1AC_ae;
+    int auto96F4F1AC_ai;
+
+    // Variable Declarations
+    actor lv_testActor;
+    int lv_i;
+    string lv_unit;
+    string lv_categories;
+    string lv_race;
+    string lv_objectType;
+    string lv_objectFamily;
+    int lv_raceID;
+    int lv_typeID;
+    int lv_unitID;
+    int lv_listbox;
+
+    // Variable Initialization
+    lv_categories = "";
+    lv_race = "";
+    lv_objectType = "";
+    lv_objectFamily = "";
+    lv_listbox = c_invalidDialogControlId;
+
+    // Implementation
+    auto96F4F1AC_ae = CatalogEntryCount(c_gameCatalogUnit);
+    auto96F4F1AC_ai = 1;
+    lv_i = 1;
+    for ( ; ( (auto96F4F1AC_ai >= 0 && lv_i <= auto96F4F1AC_ae) || (auto96F4F1AC_ai <= 0 && lv_i >= auto96F4F1AC_ae) ) ; lv_i += auto96F4F1AC_ai ) {
+        lv_unit = CatalogEntryGet(c_gameCatalogUnit, lv_i);
+        lv_categories = CatalogFieldValueGet(c_gameCatalogUnit, lv_unit, "EditorCategories", c_playerAny);
+        lv_race = CatalogFieldValueGet(c_gameCatalogUnit, lv_unit, "Race", c_playerAny);
+        lv_objectType = lib0777E5D9_gf_SplitString(lv_categories, ",", 0);
+        lv_objectType = lib0777E5D9_gf_SplitString(lv_objectType, ":", 1);
+        lv_objectFamily = lib0777E5D9_gf_SplitString(lv_categories, ",", 1);
+        lv_objectFamily = lib0777E5D9_gf_SplitString(lv_objectFamily, ":", 1);
+        if ((lv_objectFamily == "Melee") && (((lv_unit)) != "") && (UnitTypeTestFlag(UnitTypeFromString((lv_unit)), c_unitFlagMissile) == false) && (UnitTypeTestFlag(UnitTypeFromString((lv_unit)), c_unitFlagUnselectable) == false) && (UnitTypeTestFlag(UnitTypeFromString((lv_unit)), c_unitFlagUnselectable) == false)) {
+            lv_raceID = lib0777E5D9_gf_StringShortRaceToInt(lv_race);
+            lv_typeID = lib0777E5D9_gf_UnitTypeToInt(lv_objectType);
+            lv_unitID = lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_races[lv_raceID].lv_types[lv_typeID].lv_dataID;
+            lv_listbox = lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_races[lv_raceID].lv_types[lv_typeID].lv_listbox;
+            lib0777E5D9_gf_AddUnitData(lv_raceID, lv_typeID, lv_unitID, (lv_unit), lv_listbox);
+        }
+
+    }
+}
+
+void lib0777E5D9_gf_AddUnitData (int lp_raceID, int lp_typeID, int lp_unitID, string lp_name, int lp_listbox) {
+    // Variable Declarations
+    text lv_name;
+
+    // Variable Initialization
+    lv_name = (lib0777E5D9_gf_StringPathToText(c_gameCatalogUnit, lp_name, "Name") + StringExternal("Param/Value/lib_0777E5D9_06D7F585") + StringToText(lp_name) + StringExternal("Param/Value/lib_0777E5D9_4481B692"));
+
+    // Implementation
+    lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_races[lp_raceID].lv_types[lp_typeID].lv_unitData[lp_unitID].lv_name = lp_name;
+    lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_races[lp_raceID].lv_types[lp_typeID].lv_dataID += 1;
+    DialogControlAddItem(lp_listbox, PlayerGroupAll(), StringToText(lp_name));
+}
+
+int lib0777E5D9_gf_StringShortRaceToInt (string lp_race) {
+    string auto248544EC_val;
+
+    // Variable Declarations
+    int lv_raceID;
+
+    // Variable Initialization
+
+    // Implementation
+    auto248544EC_val = lp_race;
+    if (auto248544EC_val == "Terr") {
+        lv_raceID = 0;
+    }
+    else if (auto248544EC_val == "Zerg") {
+        lv_raceID = 1;
+    }
+    else if (auto248544EC_val == "Prot") {
+        lv_raceID = 2;
+    }
+    else if (auto248544EC_val == "Protoss") {
+        lv_raceID = 2;
+    }
+    else if (auto248544EC_val == "Neut") {
+        lv_raceID = 3;
+    }
+    else {
+    }
+    return lv_raceID;
+}
+
+int lib0777E5D9_gf_UnitTypeToInt (string lp_objectType) {
+    string autoDAEC0CCA_val;
+
+    // Variable Declarations
+    int lv_typeID;
+
+    // Variable Initialization
+
+    // Implementation
+    autoDAEC0CCA_val = lp_objectType;
+    if (autoDAEC0CCA_val == "Unit") {
+        lv_typeID = 0;
+    }
+    else if (autoDAEC0CCA_val == "Structure") {
+        lv_typeID = 1;
+    }
+    else if (autoDAEC0CCA_val == "Resource") {
+        lv_typeID = 2;
+    }
+    else if (autoDAEC0CCA_val == "Destructible") {
+        lv_typeID = 3;
+    }
+    else {
+    }
+    return lv_typeID;
+}
+
+void lib0777E5D9_gf_CreateUpgradeCloseButton (int lp_sizeX, int lp_sizeY, string lp_image) {
+    // Variable Declarations
+    int lv_container;
+    int lv_image;
+    int lv_button;
+
+    // Variable Initialization
+    lv_container = lib0777E5D9_gf_DialogAddContainer(lp_sizeX, lp_sizeY, 430, 15, c_anchorTopLeft, PlayerGroupAll(), "", null);
+    lv_image = lib0777E5D9_gf_DialogAddImage(lv_container, lp_sizeX, lp_sizeY, c_anchorTopLeft, 0, 0, StringToText(""), lp_image, c_triggerImageTypeNormal, false, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), c_triggerBlendModeNormal);
+    lv_button = lib0777E5D9_gf_DialogAddButton(lv_container, lp_sizeX, lp_sizeY, 0, 0, PlayerGroupAll(), c_anchorTopLeft, null, "");
+
+    // Implementation
+    lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButtonContainer = lv_container;
+    lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButtonImage = lv_image;
+    lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButton = lv_button;
+    DialogControlFadeTransparency(lv_button, PlayerGroupAll(), 0.0, 100.0);
+}
+
+void lib0777E5D9_gf_ResizeUpgradeContainers (int lp_player) {
+    // Variable Declarations
+    int lv_i;
+    int lv_talentCount;
+    int lv_x;
+    int lv_y;
+
+    // Variable Initialization
+    lv_talentCount = lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lib0777E5D9_gf_GetChosenRaceID(lp_player)].lv_types[3].lv_dataID;
+    lv_x = DialogGetWidth(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[3]);
+    lv_y = DialogGetHeight(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[3]);
+
+    // Implementation
+    if ((lv_talentCount < 13)) {
+        DialogSetSize(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[3], lv_x, 140);
+    }
+
+    if ((lv_talentCount > 13)) {
+        DialogSetSize(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[3], lv_x, 200);
+    }
+
+    if ((lv_talentCount > 20)) {
+        DialogSetSize(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[3], lv_x, 260);
+    }
+
+}
+
+void lib0777E5D9_gf_DisplayAllUpgradeTables (int lp_raceID, int lp_padding) {
+    int init_i;
+
+    // Variable Declarations
+    int lv_i;
+    lib0777E5D9_gs_UpgData[256] lv_data;
+
+    // Variable Initialization
+    for (init_i = 0; init_i <= 255; init_i += 1) {
+        lv_data[init_i].lv_image = c_invalidDialogControlId;
+        lv_data[init_i].lv_button = c_invalidDialogControlId;
+    }
+
+    // Implementation
+    lib0777E5D9_gf_DisplayUpgradeTable(0, 5, 7, lp_padding, 60, 60, 70, 70, lp_raceID, PlayerGroupAll());
+    lib0777E5D9_gf_DisplayUpgradeTable(1, 5, 7, lp_padding, 60, 60, 70, 70, lp_raceID, PlayerGroupAll());
+    lib0777E5D9_gf_DisplayUpgradeTable(2, 5, 7, lp_padding, 60, 60, 70, 70, lp_raceID, PlayerGroupAll());
+    lib0777E5D9_gf_DisplayUpgradeTable(3, 5, 7, lp_padding, 60, 60, 70, 70, lp_raceID, PlayerGroupAll());
+}
+
+trigger auto_lib0777E5D9_gf_DisplayUpgradeTable_Trigger = null;
+int auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_containerID;
+int auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_rowCount;
+int auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_columnCount;
+int auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_padding;
+int auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_itemSpacingX;
+int auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_itemSpacingY;
+int auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_buttonX;
+int auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_buttonY;
+int auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_raceID;
+playergroup auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_players;
+
+void lib0777E5D9_gf_DisplayUpgradeTable (int lp_containerID, int lp_rowCount, int lp_columnCount, int lp_padding, int lp_itemSpacingX, int lp_itemSpacingY, int lp_buttonX, int lp_buttonY, int lp_raceID, playergroup lp_players) {
+    auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_containerID = lp_containerID;
+    auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_rowCount = lp_rowCount;
+    auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_columnCount = lp_columnCount;
+    auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_padding = lp_padding;
+    auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_itemSpacingX = lp_itemSpacingX;
+    auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_itemSpacingY = lp_itemSpacingY;
+    auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_buttonX = lp_buttonX;
+    auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_buttonY = lp_buttonY;
+    auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_raceID = lp_raceID;
+    auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_players = lp_players;
+
+    if (auto_lib0777E5D9_gf_DisplayUpgradeTable_Trigger == null) {
+        auto_lib0777E5D9_gf_DisplayUpgradeTable_Trigger = TriggerCreate("auto_lib0777E5D9_gf_DisplayUpgradeTable_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib0777E5D9_gf_DisplayUpgradeTable_Trigger, false, false);
+}
+
+bool auto_lib0777E5D9_gf_DisplayUpgradeTable_TriggerFunc (bool testConds, bool runActions) {
+    int lp_containerID = auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_containerID;
+    int lp_rowCount = auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_rowCount;
+    int lp_columnCount = auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_columnCount;
+    int lp_padding = auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_padding;
+    int lp_itemSpacingX = auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_itemSpacingX;
+    int lp_itemSpacingY = auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_itemSpacingY;
+    int lp_buttonX = auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_buttonX;
+    int lp_buttonY = auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_buttonY;
+    int lp_raceID = auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_raceID;
+    playergroup lp_players = auto_lib0777E5D9_gf_DisplayUpgradeTable_lp_players;
+
+    int init_i;
+
+    int auto8C98EBEF_ae;
+    int auto8C98EBEF_ai;
+    int auto1071D6B2_ae;
+    int auto1071D6B2_ai;
+
+    // Variable Declarations
+    int lv_container;
+    lib0777E5D9_gs_UpgData[256] lv_data;
+    int[256] lv_images;
+    int[256] lv_buttons;
+    int lv_itemCounter;
+    int lv_i;
+    int lv_j;
+    text lv_tooltip;
+    int lv_offsetX;
+    int lv_offsetY;
+
+    // Variable Initialization
+    lv_container = lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[lp_containerID];
+    for (init_i = 0; init_i <= 255; init_i += 1) {
+        lv_data[init_i].lv_image = c_invalidDialogControlId;
+        lv_data[init_i].lv_button = c_invalidDialogControlId;
+    }
+    for (init_i = 0; init_i <= 255; init_i += 1) {
+        lv_images[init_i] = c_invalidDialogControlId;
+    }
+    for (init_i = 0; init_i <= 255; init_i += 1) {
+        lv_buttons[init_i] = c_invalidDialogControlId;
+    }
+
+    // Implementation
+    auto8C98EBEF_ae = (lp_rowCount - 1);
+    auto8C98EBEF_ai = 1;
+    lv_i = 0;
+    for ( ; ( (auto8C98EBEF_ai >= 0 && lv_i <= auto8C98EBEF_ae) || (auto8C98EBEF_ai <= 0 && lv_i >= auto8C98EBEF_ae) ) ; lv_i += auto8C98EBEF_ai ) {
+        auto1071D6B2_ae = (lp_columnCount - 1);
+        auto1071D6B2_ai = 1;
+        lv_j = 0;
+        for ( ; ( (auto1071D6B2_ai >= 0 && lv_j <= auto1071D6B2_ae) || (auto1071D6B2_ai <= 0 && lv_j >= auto1071D6B2_ae) ) ; lv_j += auto1071D6B2_ai ) {
+            lv_data[lv_itemCounter].lv_name = lib0777E5D9_gf_GetUpgradeName(lp_raceID, lp_containerID, lv_itemCounter);
+            lv_data[lv_itemCounter].lv_icon = lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lp_raceID].lv_types[lp_containerID].lv_data[lv_itemCounter].lv_icon;
+            if ((lv_data[lv_itemCounter].lv_name != "")) {
+                if ((lv_data[lv_itemCounter].lv_icon == null)) {
+                    lv_data[lv_itemCounter].lv_icon = "Assets\\Textures\\ui_hots_icon_shared_questionmark.dds";
+                }
+
+                lv_offsetX = ((lv_j * lp_itemSpacingX) + lp_padding);
+                lv_offsetY = ((lv_i * lp_itemSpacingY) + lp_padding);
+                lv_tooltip = lib0777E5D9_gf_StringPathToText(c_gameCatalogUpgrade, lv_data[lv_itemCounter].lv_name, "Name");
+                lv_images[lv_itemCounter] = lib0777E5D9_gf_DialogAddImage(lv_container, lp_buttonX, lp_buttonY, c_anchorTopLeft, lv_offsetX, lv_offsetY, StringToText(""), lv_data[lv_itemCounter].lv_icon, c_triggerImageTypeNormal, false, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), c_triggerBlendModeNormal);
+                lv_buttons[lv_itemCounter] = lib0777E5D9_gf_DialogAddButton(lv_container, lp_buttonX, lp_buttonY, lv_offsetX, lv_offsetY, PlayerGroupAll(), c_anchorTopLeft, StringToText(""), null);
+                DialogControlFadeTransparency(lv_buttons[lv_itemCounter], PlayerGroupAll(), 0.0, 100.0);
+                libNtve_gf_SetDialogItemTooltip(lv_buttons[lv_itemCounter], lv_tooltip, PlayerGroupAll());
+                lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lp_raceID].lv_types[lp_containerID].lv_data[lv_itemCounter].lv_image = lv_images[lv_itemCounter];
+                lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lp_raceID].lv_types[lp_containerID].lv_data[lv_itemCounter].lv_button = lv_buttons[lv_itemCounter];
+            }
+            else {
+                lv_j -= 1;
+            }
+            lv_itemCounter += 1;
+        }
+    }
+    return true;
+}
+
+void lib0777E5D9_gf_CreateUpgradeContainers (int lp_sizeX, int lp_sizeY, int lp_padding, string lp_background) {
+    int init_i;
+
+    int autoF58FA62D_ae;
+    int autoF58FA62D_ai;
+
+    // Variable Declarations
+    int lv_i;
+    int[4] lv_containers;
+    string[4] lv_names;
+    int lv_relativeAnchor;
+    int lv_offsetX;
+    int lv_offsetY;
+
+    // Variable Initialization
+    for (init_i = 0; init_i <= 3; init_i += 1) {
+        lv_containers[init_i] = c_invalidDialogId;
+    }
+    for (init_i = 0; init_i <= 3; init_i += 1) {
+        lv_names[init_i] = "";
+    }
+    lv_relativeAnchor = c_anchorTopLeft;
+
+    // Implementation
+    lv_names[0] = "Armor Bonuses";
+    lv_names[1] = "Attack Bonuses";
+    lv_names[2] = "Spell Research";
+    lv_names[3] = "Talents";
+    autoF58FA62D_ae = 3;
+    autoF58FA62D_ai = 1;
+    lv_i = 0;
+    for ( ; ( (autoF58FA62D_ai >= 0 && lv_i <= autoF58FA62D_ae) || (autoF58FA62D_ai <= 0 && lv_i >= autoF58FA62D_ae) ) ; lv_i += autoF58FA62D_ai ) {
+        if ((lv_i == 0)) {
+            lv_offsetX = lp_padding;
+            lv_offsetY = lp_padding;
+            lv_relativeAnchor = c_anchorTopLeft;
+        }
+        else {
+            lv_offsetY = ((lp_sizeY * lv_i) + (lp_padding * (lv_i + 1)));
+            lv_relativeAnchor = DialogGetAnchor(lv_containers[(lv_i - 1)]);
+        }
+        lv_offsetY = (lv_offsetY + (lp_padding * 3));
+        lv_containers[lv_i] = lib0777E5D9_gf_DialogAddContainer(lp_sizeX, lp_sizeY, lv_offsetX, lv_offsetY, lv_relativeAnchor, PlayerGroupAll(), "", lp_background);
+        lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[lv_i] = lv_containers[lv_i];
+        lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containerNames[lv_i] = lib0777E5D9_gf_DialogAddLabel(lv_containers[lv_i], lp_sizeX, 24, lp_padding, 0, PlayerGroupAll(), c_anchorTopLeft, StringToText(lv_names[lv_i]), "EditorPropertyList");
+        libNtve_gf_SetDialogItemRenderPriority(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containerNames[lv_i], 513, PlayerGroupAll());
+    }
+}
+
+void lib0777E5D9_gf_LoadUpgradeData () {
+    int auto07B29969_ae;
+    int auto07B29969_ai;
+
+    // Variable Declarations
+    int lv_i;
+    string lv_upgrade;
+    string lv_categories;
+    int lv_itemCount;
+    string lv_iconPath;
+    string lv_reference;
+    string lv_upgRace;
+    string lv_upgType;
+    int lv_raceID;
+    int lv_typeID;
+    int lv_upgID;
+
+    // Variable Initialization
+    lv_categories = "";
+    lv_iconPath = "";
+    lv_reference = "";
+    lv_upgRace = "";
+    lv_upgType = "";
+
+    // Implementation
+    auto07B29969_ae = CatalogEntryCount(c_gameCatalogUpgrade);
+    auto07B29969_ai = 1;
+    lv_i = 1;
+    for ( ; ( (auto07B29969_ai >= 0 && lv_i <= auto07B29969_ae) || (auto07B29969_ai <= 0 && lv_i >= auto07B29969_ae) ) ; lv_i += auto07B29969_ai ) {
+        lv_upgrade = CatalogEntryGet(c_gameCatalogUpgrade, lv_i);
+        lv_categories = CatalogFieldValueGet(c_gameCatalogUpgrade, lv_upgrade, "EditorCategories", c_playerAny);
+        lv_upgRace = lib0777E5D9_gf_SplitString(lv_categories, ",", 0);
+        lv_upgRace = lib0777E5D9_gf_SplitString(lv_upgRace, ":", 1);
+        lv_upgType = lib0777E5D9_gf_SplitString(lv_categories, ",", 1);
+        lv_upgType = lib0777E5D9_gf_SplitString(lv_upgType, ":", 1);
+        if ((lv_upgRace != "") && (lv_upgType != "")) {
+            lv_reference = "Upgrade,";
+            lv_reference = (lv_reference + (lv_upgrade));
+            lv_reference = (lv_reference + ",Icon");
+            lv_iconPath = CatalogReferenceGet(lv_reference, c_playerAny);
+            lv_raceID = lib0777E5D9_gf_StringRaceToInt(lv_upgRace);
+            lv_typeID = lib0777E5D9_gf_UpgTypeStringToInt(lv_upgType);
+            lv_upgID = lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lv_raceID].lv_types[lv_typeID].lv_dataID;
+            lib0777E5D9_gf_AddUpgradeData(lv_raceID, lv_typeID, lv_upgID, lv_upgrade, (lv_iconPath), lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lv_raceID].lv_types[lv_typeID].lv_data[lv_typeID].lv_image, lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lv_raceID].lv_types[lv_typeID].lv_data[lv_typeID].lv_button);
+            lv_itemCount += 1;
+        }
+
+    }
+}
+
+void lib0777E5D9_gf_AddUpgradeData (int lp_raceID, int lp_typeID, int lp_upgID, string lp_name, string lp_icon, int lp_imageDialog, int lp_buttonDialog) {
+    // Implementation
+    lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lp_raceID].lv_types[lp_typeID].lv_data[lp_upgID].lv_name = lp_name;
+    lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lp_raceID].lv_types[lp_typeID].lv_data[lp_upgID].lv_icon = lp_icon;
+    lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lp_raceID].lv_types[lp_typeID].lv_data[lp_upgID].lv_image = lp_imageDialog;
+    lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lp_raceID].lv_types[lp_typeID].lv_data[lp_upgID].lv_button = lp_buttonDialog;
+    lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lp_raceID].lv_types[lp_typeID].lv_dataID += 1;
+}
+
+int lib0777E5D9_gf_UpgTypeStringToInt (string lp_type) {
+    string autoF595A67A_val;
+
+    // Implementation
+    autoF595A67A_val = lp_type;
+    if (autoF595A67A_val == "ArmorBonus") {
+        return 0;
+    }
+    else if (autoF595A67A_val == "AttackBonus") {
+        return 1;
+    }
+    else if (autoF595A67A_val == "SpellResearch") {
+        return 2;
+    }
+    else if (autoF595A67A_val == "Talents") {
+        return 3;
+    }
+    else {
+    }
+    return -1;
+}
+
+int lib0777E5D9_gf_StringRaceToInt (string lp_race) {
+    string autoEE765E31_val;
+
+    // Implementation
+    autoEE765E31_val = lp_race;
+    if (autoEE765E31_val == "Terran") {
+        return 0;
+    }
+    else if (autoEE765E31_val == "Zerg") {
+        return 1;
+    }
+    else if (autoEE765E31_val == "Protoss") {
+        return 2;
+    }
+    else if (autoEE765E31_val == "Neutral") {
+        return 3;
+    }
+    else {
+    }
+    return 0;
+}
+
+int lib0777E5D9_gf_RaceToInt (string lp_race) {
+    string auto19C559A2_val;
+
+    // Implementation
+    auto19C559A2_val = lp_race;
+    if (auto19C559A2_val == "Terr") {
+        return 0;
+    }
+    else if (auto19C559A2_val == "Zerg") {
+        return 1;
+    }
+    else if (auto19C559A2_val == "Prot") {
+        return 2;
+    }
+    else {
+        return -1;
+    }
+}
+
+string lib0777E5D9_gf_GetUpgradeName (int lp_raceID, int lp_typeID, int lp_iD) {
+    // Implementation
+    return lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lp_raceID].lv_types[lp_typeID].lv_data[lp_iD].lv_name;
+}
+
+int lib0777E5D9_gf_GetUsedUpgradeContainer (int lp_usedContainer) {
+    int auto717BB8EF_ae;
+    int auto717BB8EF_ai;
+
+    // Variable Declarations
+    int lv_i;
+
+    // Variable Initialization
+
+    // Implementation
+    auto717BB8EF_ae = 3;
+    auto717BB8EF_ai = 1;
+    lv_i = 0;
+    for ( ; ( (auto717BB8EF_ai >= 0 && lv_i <= auto717BB8EF_ae) || (auto717BB8EF_ai <= 0 && lv_i >= auto717BB8EF_ae) ) ; lv_i += auto717BB8EF_ai ) {
+        if ((lp_usedContainer == lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[lv_i])) {
+            return lv_i;
+        }
+
+    }
+    return -1;
+}
+
+void lib0777E5D9_gf_AddMessage (text lp_text, string lp_style, playergroup lp_players) {
+    // Variable Declarations
+    int lv_container;
+    int lv_iD;
+
+    // Variable Initialization
+    lv_container = lib0777E5D9_gv_app.lv_interface.lv_messages.lv_container;
+    lv_iD = lib0777E5D9_gv_app.lv_interface.lv_messages.lv_messageCount;
+
+    // Implementation
+    lib0777E5D9_gv_app.lv_interface.lv_messages.lv_messages[lv_iD] = lib0777E5D9_gf_DialogAddLabel(lv_container, 600, 25, 0, ((lv_iD * 25) + 20), PlayerGroupAll(), c_anchorBottom, lp_text, lp_style);
+    lib0777E5D9_gv_app.lv_interface.lv_messages.lv_messageCount += 1;
+}
+
+void lib0777E5D9_gf_RemoveMessage () {
+    // Variable Declarations
+    int lv_iD;
+
+    // Variable Initialization
+    lv_iD = lib0777E5D9_gv_app.lv_interface.lv_messages.lv_messageCount;
+
+    // Implementation
+    DialogControlDestroy(lib0777E5D9_gv_app.lv_interface.lv_messages.lv_messages[(lv_iD - 1)]);
+    lib0777E5D9_gv_app.lv_interface.lv_messages.lv_messageCount -= 1;
+}
+
+void lib0777E5D9_gf_LoadCategory (int lp_catalog) {
+    int autoB1855F33_ae;
+    int autoB1855F33_ai;
+
+    // Variable Declarations
+    int lv_i;
+    string lv_entry;
+    int lv_entryID;
+    string lv_categories;
+
+    // Variable Initialization
+    lv_categories = "";
+
+    // Implementation
+    autoB1855F33_ae = CatalogEntryCount(lp_catalog);
+    autoB1855F33_ai = 1;
+    lv_i = 1;
+    for ( ; ( (autoB1855F33_ai >= 0 && lv_i <= autoB1855F33_ae) || (autoB1855F33_ai <= 0 && lv_i >= autoB1855F33_ae) ) ; lv_i += autoB1855F33_ai ) {
+        lv_entry = CatalogEntryGet(lp_catalog, lv_i);
+        lv_categories = CatalogFieldValueGet(lp_catalog, lv_entry, "EditorCategories", c_playerAny);
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringToText((lv_entry)));
+    }
+}
+
+int lib0777E5D9_gf_GetUnitPlacementToggleKey () {
+    // Implementation
+    return lib0777E5D9_gv_app.lv_interface.lv_hotkeys.lv_placeUnitsToggle;
+}
+
+int lib0777E5D9_gf_GetDeleteKey () {
+    // Implementation
+    return lib0777E5D9_gv_app.lv_interface.lv_hotkeys.lv_deleteSelection;
+}
+
+int lib0777E5D9_gf_GetListToggleKey () {
+    // Implementation
+    return lib0777E5D9_gv_app.lv_interface.lv_hotkeys.lv_listsToggle;
+}
+
+int lib0777E5D9_gf_GetUpgradeListToggleKey () {
+    // Implementation
+    return lib0777E5D9_gv_app.lv_interface.lv_hotkeys.lv_upgradeListToggle;
+}
+
+int lib0777E5D9_gf_GetMoveUnitToggle () {
+    // Implementation
+    return lib0777E5D9_gv_app.lv_interface.lv_hotkeys.lv_moveUnitToggle;
+}
+
+void lib0777E5D9_gf_UpdateEditBox (int lp_editBox, string lp_newValue, playergroup lp_players) {
+    // Implementation
+    libNtve_gf_SetDialogItemEditorValue(lp_editBox, lp_newValue, lp_players);
+}
+
+void lib0777E5D9_gf_AddRacesToDropdown (int lp_dropdown) {
+    // Implementation
+    DialogControlAddItem(lp_dropdown, PlayerGroupAll(), StringExternal("Param/Value/lib_0777E5D9_2D22F17C"));
+    DialogControlAddItem(lp_dropdown, PlayerGroupAll(), StringExternal("Param/Value/lib_0777E5D9_6691A10D"));
+    DialogControlAddItem(lp_dropdown, PlayerGroupAll(), StringExternal("Param/Value/lib_0777E5D9_703613AB"));
+    DialogControlAddItem(lp_dropdown, PlayerGroupAll(), StringExternal("Param/Value/lib_0777E5D9_CEDCF0F9"));
+    DialogControlSelectItem(lp_dropdown, PlayerGroupAll(), 1);
+}
+
+int lib0777E5D9_gf_DialogAddContainer (int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, int lp_anchor, playergroup lp_players, string lp_title, string lp_background) {
+    // Implementation
+    DialogCreate(lp_sizeX, lp_sizeY, lp_anchor, lp_offsetX, lp_offsetY, true);
+    if ((lp_title != "")) {
+        DialogSetTitle(DialogLastCreated(), StringToText(lp_title));
+    }
+
+    if ((lp_background != null)) {
+        DialogSetImage(DialogLastCreated(), lp_background);
+        DialogSetImageVisible(DialogLastCreated(), true);
+    }
+    else {
+        DialogSetImageVisible(DialogLastCreated(), false);
+    }
+    return DialogLastCreated();
+}
+
+int lib0777E5D9_gf_DialogAddLabel (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, text lp_text, string lp_fontStyle) {
+    // Implementation
+    libNtve_gf_CreateDialogItemLabel(lp_parentDialog, lp_sizeX, lp_sizeY, lp_anchor, lp_offsetX, lp_offsetY, lp_text, ColorWithAlpha(0,0,0,0), false, 2.0);
+    libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), lp_fontStyle, lp_players);
+    return DialogControlLastCreated();
+}
+
+int lib0777E5D9_gf_DialogAddEditBox (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, string lp_value, string lp_fontStyle) {
+    // Variable Declarations
+    int lv_box;
+
+    // Variable Initialization
+    lv_box = c_invalidDialogControlId;
+
+    // Implementation
+    lv_box = lib0777E5D9_gf_DialogAddGenericItem(c_triggerControlTypeEditBox, lp_parentDialog, lp_anchor, lp_sizeX, lp_sizeY, lp_offsetX, lp_offsetY, lp_players, false);
+    libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), lp_fontStyle, lp_players);
+    return DialogControlLastCreated();
+}
+
+int lib0777E5D9_gf_DialogAddButton (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, text lp_text, string lp_image) {
+    // Implementation
+    libNtve_gf_CreateDialogItemButton(lp_parentDialog, lp_sizeX, lp_sizeY, lp_anchor, lp_offsetX, lp_offsetY, StringToText(""), lp_text, "");
+    if ((lp_image != null)) {
+        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), lp_image, lp_players);
+    }
+
+    return DialogControlLastCreated();
+}
+
+int lib0777E5D9_gf_DialogAddImage (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_anchor, int lp_offsetX, int lp_offsetY, text lp_tooltip, string lp_file, int lp_imageType, bool lp_tiledFlag, color lp_tint, int lp_blendMode) {
+    // Implementation
+    libNtve_gf_CreateDialogItemImage(lp_parentDialog, lp_sizeX, lp_sizeY, lp_anchor, lp_offsetX, lp_offsetY, lp_tooltip, lp_file, lp_imageType, lp_tiledFlag, lp_tint, lp_blendMode);
+    return DialogControlLastCreated();
+}
+
+int lib0777E5D9_gf_DialogAddSlider (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, fixed lp_min, fixed lp_max, fixed lp_initialValue, bool lp_toggleOnOff, fixed lp_animTime) {
+    // Variable Declarations
+    int lv_slider;
+
+    // Variable Initialization
+    lv_slider = c_invalidDialogControlId;
+
+    // Implementation
+    lv_slider = lib0777E5D9_gf_DialogAddGenericItem(c_triggerControlTypeSlider, lp_parentDialog, lp_anchor, lp_sizeX, lp_sizeY, lp_offsetX, lp_offsetY, lp_players, lp_toggleOnOff);
+    libNtve_gf_SetDialogItemMinimumValue(lv_slider, lp_min, lp_players);
+    libNtve_gf_SetDialogItemMaximumValue(lv_slider, lp_max, lp_players);
+    libNtve_gf_SetDialogItemCurrentValue(lv_slider, lp_initialValue, lp_players);
+    return lv_slider;
+}
+
+int lib0777E5D9_gf_DialogAddProgressBar (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, fixed lp_min, fixed lp_max, fixed lp_current) {
+    // Implementation
+    DialogControlCreate(DialogLastCreated(), c_triggerControlTypeProgressBar);
+    DialogControlSetSize(DialogControlLastCreated(), lp_players, lp_sizeX, lp_sizeY);
+    DialogControlSetPosition(DialogControlLastCreated(), lp_players, lp_anchor, lp_offsetX, lp_offsetY);
+    libNtve_gf_SetDialogItemMinimumValue(DialogControlLastCreated(), lp_min, lp_players);
+    libNtve_gf_SetDialogItemMaximumValue(DialogControlLastCreated(), lp_max, lp_players);
+    libNtve_gf_SetDialogItemCurrentValue(DialogControlLastCreated(), lp_current, lp_players);
+    libNtve_gf_SetDialogItemRenderPriority(DialogControlLastCreated(), 513, lp_players);
+    return DialogControlLastCreated();
+}
+
+int lib0777E5D9_gf_AddListBox (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, int lp_anchor, playergroup lp_players) {
+    // Implementation
+    DialogControlCreate(lp_parentDialog, c_triggerControlTypeListBox);
+    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_loadingscreen_playerloadingbar_highlighted.dds", lp_players);
+    DialogControlSetSize(DialogControlLastCreated(), lp_players, lp_sizeX, lp_sizeY);
+    DialogControlSetPosition(DialogControlLastCreated(), lp_players, lp_anchor, lp_offsetX, lp_offsetY);
+    return DialogControlLastCreated();
+}
+
+int lib0777E5D9_gf_DialogAddGenericItem (int lp_dialogType, int lp_parentDialog, int lp_anchor, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, bool lp_toggle) {
+    // Implementation
+    DialogControlCreate(lp_parentDialog, lp_dialogType);
+    DialogControlSetSize(DialogControlLastCreated(), lp_players, lp_sizeX, lp_sizeY);
+    DialogControlSetPosition(DialogControlLastCreated(), lp_players, lp_anchor, lp_offsetX, lp_offsetY);
+    return DialogControlLastCreated();
+}
+
+int lib0777E5D9_gf_GetUpgradeIDFromXYOffset (int lp_x, int lp_y, playergroup lp_players, int lp_columnCount) {
+    // Variable Declarations
+    int lv_upgID;
+    int lv_x;
+    int lv_y;
+
+    // Variable Initialization
+
+    // Implementation
+    lv_x = ((lp_x - 10) / 60);
+    lv_y = ((lp_y - 10) / 60);
+    lv_upgID = (lv_x + (lv_y * lp_columnCount));
+    return lv_upgID;
+}
+
+void lib0777E5D9_gf_ToggleUpgrade (string lp_upgrade, int lp_image, int lp_player) {
+    // Variable Declarations
+    text lv_name;
+    text lv_upgradeTitle;
+
+    // Variable Initialization
+    lv_name = lib0777E5D9_gf_StringPathToText(c_gameCatalogUpgrade, lp_upgrade, "Name");
+    lv_upgradeTitle = lv_name;
+
+    // Implementation
+    if ((TechTreeUpgradeCount(lp_player, lp_upgrade, c_techCountCompleteOnly) < 1)) {
+        lv_upgradeTitle = (lv_upgradeTitle + StringExternal("Param/Value/lib_0777E5D9_B9AFEFA8"));
+        libNtve_gf_SetUpgradeLevelForPlayer(lp_player, lp_upgrade, 1);
+        libNtve_gf_SetDialogItemDesaturated(lp_image, true, PlayerGroupAll());
+    }
+    else {
+        lv_upgradeTitle = (lv_upgradeTitle + StringExternal("Param/Value/lib_0777E5D9_62366D81"));
+        libNtve_gf_SetDialogItemDesaturated(lp_image, false, PlayerGroupAll());
+        libNtve_gf_SetUpgradeLevelForPlayer(lp_player, lp_upgrade, 0);
+    }
+}
+
+void lib0777E5D9_gf_CheckUpgradeStatus (int lp_player) {
+    int auto836F0B8B_ae;
+    int auto836F0B8B_ai;
+    int autoA1580309_ae;
+    int autoA1580309_ai;
+    int auto405FC300_ae;
+    int auto405FC300_ai;
+
+    // Variable Declarations
+    int lv_i;
+    int lv_j;
+    int lv_k;
+
+    // Variable Initialization
+
+    // Implementation
+    auto836F0B8B_ae = 2;
+    auto836F0B8B_ai = 1;
+    lv_i = 0;
+    for ( ; ( (auto836F0B8B_ai >= 0 && lv_i <= auto836F0B8B_ae) || (auto836F0B8B_ai <= 0 && lv_i >= auto836F0B8B_ae) ) ; lv_i += auto836F0B8B_ai ) {
+        autoA1580309_ae = 3;
+        autoA1580309_ai = 1;
+        lv_j = 0;
+        for ( ; ( (autoA1580309_ai >= 0 && lv_j <= autoA1580309_ae) || (autoA1580309_ai <= 0 && lv_j >= autoA1580309_ae) ) ; lv_j += autoA1580309_ai ) {
+            auto405FC300_ae = 31;
+            auto405FC300_ai = 1;
+            lv_k = 0;
+            for ( ; ( (auto405FC300_ai >= 0 && lv_k <= auto405FC300_ae) || (auto405FC300_ai <= 0 && lv_k >= auto405FC300_ae) ) ; lv_k += auto405FC300_ai ) {
+                if ((TechTreeUpgradeCount(lp_player, ((lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lv_i].lv_types[lv_j].lv_data[lv_k].lv_name)), c_techCountCompleteOnly) > 0)) {
+                    libNtve_gf_SetDialogItemDesaturated(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lv_i].lv_types[lv_j].lv_data[lv_k].lv_image, true, PlayerGroupAll());
+                }
+                else {
+                    libNtve_gf_SetDialogItemDesaturated(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lv_i].lv_types[lv_j].lv_data[lv_k].lv_image, false, PlayerGroupAll());
+                }
+            }
+        }
+    }
+}
+
+void lib0777E5D9_gf_ApplyUnitStats () {
+}
+
+void lib0777E5D9_gf_SaveTargetFilters (string lp_weapon, int lp_unitOwner, int lp_modder) {
+    int init_i;
+
+    int autoEE23D29A_ae;
+    int autoEE23D29A_ai;
+
+    // Variable Declarations
+    string lv_filters;
+    string lv_targetList;
+    string[8] lv_targets;
+    int lv_targetID;
+    bool lv_targetAir;
+    bool lv_targetGround;
+    string lv_newFilter;
+    string lv_oldFilter;
+    string lv_exclude;
+
+    // Variable Initialization
+    lv_filters = CatalogFieldValueGet(c_gameCatalogWeapon, lp_weapon, "TargetFilters", lp_unitOwner);
+    lv_targetList = "";
+    for (init_i = 0; init_i <= 7; init_i += 1) {
+        lv_targets[init_i] = "";
+    }
+    lv_newFilter = "";
+    lv_oldFilter = "";
+    lv_exclude = "";
+
+    // Implementation
+    lv_targetList = lib0777E5D9_gf_SplitString((lv_filters), ";", 0);
+    autoEE23D29A_ae = 7;
+    autoEE23D29A_ai = 1;
+    lv_targetID = 0;
+    for ( ; ( (autoEE23D29A_ai >= 0 && lv_targetID <= autoEE23D29A_ae) || (autoEE23D29A_ai <= 0 && lv_targetID >= autoEE23D29A_ae) ) ; lv_targetID += autoEE23D29A_ai ) {
+        lv_targets[lv_targetID] = lib0777E5D9_gf_SplitString(lv_targetList, ",", lv_targetID);
+    }
+    lv_oldFilter = lib0777E5D9_gf_SplitString((lv_filters), ";", 0);
+    lv_exclude = lib0777E5D9_gf_SplitString((lv_filters), ";", 1);
+    if ((libNtve_gf_DialogItemIsChecked(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[0], lp_modder) == true) && (libNtve_gf_DialogItemIsChecked(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[1], lp_modder) == true)) {
+        lv_newFilter = "";
+    }
+
+    if ((libNtve_gf_DialogItemIsChecked(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[0], lp_modder) == true) && (libNtve_gf_DialogItemIsChecked(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[1], lp_modder) == false)) {
+        lv_newFilter = "Air";
+    }
+
+    if ((libNtve_gf_DialogItemIsChecked(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[0], lp_modder) == false) && (libNtve_gf_DialogItemIsChecked(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[1], lp_modder) == true)) {
+        lv_newFilter = "Ground";
+    }
+
+    if ((libNtve_gf_DialogItemIsChecked(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[0], lp_modder) == false) && (libNtve_gf_DialogItemIsChecked(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[1], lp_modder) == false)) {
+        lv_newFilter = "Air,Ground";
+    }
+
+    if ((lv_newFilter != "")) {
+        lv_newFilter = (lv_newFilter + "," + "Visible" + ";" + lv_exclude);
+    }
+    else {
+        lv_newFilter = ("Visible" + ";" + lv_exclude);
+    }
+    CatalogFieldValueSet(c_gameCatalogWeapon, lp_weapon, "TargetFilters", lp_unitOwner, lv_newFilter);
+}
+
+void lib0777E5D9_gf_SetUnitPropsUIStrings () {
+    // Implementation
+    lib0777E5D9_gf_AddUnitPropsUIString("hp");
+    lib0777E5D9_gf_AddUnitPropsUIString("max hp");
+    lib0777E5D9_gf_AddUnitPropsUIString("armor");
+    lib0777E5D9_gf_AddUnitPropsUIString("shields");
+    lib0777E5D9_gf_AddUnitPropsUIString("max shields");
+    lib0777E5D9_gf_AddUnitPropsUIString("shield armor");
+    lib0777E5D9_gf_AddUnitPropsUIString("energy");
+    lib0777E5D9_gf_AddUnitPropsUIString("max energy");
+    lib0777E5D9_gf_AddUnitPropsUIString("facing angle");
+    lib0777E5D9_gf_AddUnitPropsUIString("speed");
+    lib0777E5D9_gf_AddUnitPropsUIString("max speed");
+}
+
+void lib0777E5D9_gf_AddUnitPropsUIString (string lp_string) {
+    // Variable Declarations
+    int lv_iD;
+
+    // Variable Initialization
+    lv_iD = lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_labelStringCount;
+
+    // Implementation
+    lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_labelStrings[lv_iD] = lp_string;
+    lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_labelStringCount += 1;
+}
+
+void lib0777E5D9_gf_CreateUnitPanelCloseButton (int lp_sizeX, int lp_sizeY, string lp_image) {
+    // Variable Declarations
+    int lv_container;
+    int lv_image;
+    int lv_button;
+
+    // Variable Initialization
+    lv_container = lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_container;
+    lv_image = lib0777E5D9_gf_DialogAddImage(lv_container, lp_sizeX, lp_sizeY, c_anchorTopRight, 10, 10, StringToText(""), lp_image, c_triggerImageTypeNormal, false, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), c_triggerBlendModeNormal);
+    lv_button = lib0777E5D9_gf_DialogAddButton(lv_container, lp_sizeX, lp_sizeY, 10, 10, PlayerGroupAll(), c_anchorTopRight, null, "");
+
+    // Implementation
+    lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_closeButton = lv_button;
+    lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_closeButtonImage = lv_image;
+    DialogControlFadeTransparency(lv_button, PlayerGroupAll(), 0.0, 100.0);
+}
+
+void lib0777E5D9_gf_SetWeaponPropsUIStrings () {
+    // Implementation
+    lib0777E5D9_gf_AddWeaponPropsUIString("range");
+    lib0777E5D9_gf_AddWeaponPropsUIString("damage");
+    lib0777E5D9_gf_AddWeaponPropsUIString("speed");
+    lib0777E5D9_gf_AddWeaponPropsUIString("damage pt.");
+    lib0777E5D9_gf_AddWeaponPropsUIString("scan range");
+    lib0777E5D9_gf_AddWeaponPropsUIString("splash radius");
+    lib0777E5D9_gf_AddWeaponPropsUIString("delay min");
+    lib0777E5D9_gf_AddWeaponPropsUIString("delay max");
+}
+
+void lib0777E5D9_gf_AddWeaponPropsUIString (string lp_string) {
+    // Variable Declarations
+    int lv_iD;
+
+    // Variable Initialization
+    lv_iD = lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_labelStringCount;
+
+    // Implementation
+    lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_labelStrings[lv_iD] = lp_string;
+    lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_labelStringCount += 1;
+}
+
+void lib0777E5D9_gf_CreateWeaponPropsCloseButton (int lp_sizeX, int lp_sizeY, string lp_image) {
+    // Variable Declarations
+    int lv_container;
+    int lv_image;
+    int lv_button;
+
+    // Variable Initialization
+    lv_container = lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_container;
+    lv_image = lib0777E5D9_gf_DialogAddImage(lv_container, lp_sizeX, lp_sizeY, c_anchorTopRight, 10, 10, StringToText(""), lp_image, c_triggerImageTypeNormal, false, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), c_triggerBlendModeNormal);
+    lv_button = lib0777E5D9_gf_DialogAddButton(lv_container, lp_sizeX, lp_sizeY, 10, 10, PlayerGroupAll(), c_anchorTopRight, null, "");
+
+    // Implementation
+    lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_closeButton = lv_button;
+    lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_closeButtonImage = lv_image;
+    DialogControlFadeTransparency(lv_button, PlayerGroupAll(), 0.0, 100.0);
+}
+
+void lib0777E5D9_gf_MultipleUnitsSelected (unitgroup lp_selection, int lp_player) {
+    int auto849B2219_ae;
+    int auto849B2219_ai;
+
+    // Variable Declarations
+    int lv_i;
+
+    // Variable Initialization
+
+    // Implementation
+    lib0777E5D9_gv_app.lv_players[lp_player].lv_selectedUnitProperties.lv_unit = null;
+    lib0777E5D9_gv_app.lv_players[lp_player].lv_selectedUnitProperties.lv_unitGroup = lp_selection;
+    DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_container, PlayerGroupSingle(lp_player), false);
+    auto849B2219_ae = 11;
+    auto849B2219_ai = 1;
+    lv_i = 0;
+    for ( ; ( (auto849B2219_ai >= 0 && lv_i <= auto849B2219_ae) || (auto849B2219_ai <= 0 && lv_i >= auto849B2219_ae) ) ; lv_i += auto849B2219_ai ) {
+        lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[lv_i], "", PlayerGroupSingle(lp_player));
+    }
+    libNtve_gf_SetDialogItemText(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_name, (StringExternal("Param/Value/lib_0777E5D9_F132BA55") + (IntToText(UnitGroupCount(lp_selection, c_unitCountAlive)) + StringExternal("Param/Value/lib_0777E5D9_FECCE875"))), PlayerGroupSingle(lp_player));
+}
+
+void lib0777E5D9_gf_UpdateUnitProperties (unit lp_unit, playergroup lp_players) {
+    // Variable Declarations
+    string lv_unitName;
+    text lv_unitText;
+    string lv_hP;
+    string lv_shields;
+    string lv_mP;
+    string lv_speed;
+    string lv_armor;
+    string lv_shieldArmor;
+    string lv_maxHP;
+    string lv_maxMP;
+    string lv_maxShields;
+    string lv_maxSpeed;
+    string lv_facingAngle;
+
+    // Variable Initialization
+    lv_unitName = "";
+    lv_hP = FixedToString(UnitGetPropertyFixed(lp_unit, c_unitPropLife, c_unitPropCurrent), c_fixedPrecisionAny);
+    lv_shields = FixedToString(UnitGetPropertyFixed(lp_unit, c_unitPropShields, c_unitPropCurrent), c_fixedPrecisionAny);
+    lv_mP = FixedToString(UnitGetPropertyFixed(lp_unit, c_unitPropEnergy, c_unitPropCurrent), c_fixedPrecisionAny);
+    lv_speed = FixedToString(UnitGetPropertyFixed(EventUnit(), c_unitPropMovementSpeedCurrent, c_unitPropCurrent), c_fixedPrecisionAny);
+    lv_armor = FixedToString(UnitGetPropertyFixed(lp_unit, c_unitPropLifeArmor, c_unitPropCurrent), c_fixedPrecisionAny);
+    lv_shieldArmor = FixedToString(UnitGetPropertyFixed(lp_unit, c_unitPropShieldArmor, c_unitPropCurrent), c_fixedPrecisionAny);
+    lv_maxHP = FixedToString(UnitGetPropertyFixed(lp_unit, c_unitPropLifeMax, c_unitPropCurrent), c_fixedPrecisionAny);
+    lv_maxMP = FixedToString(UnitGetPropertyFixed(lp_unit, c_unitPropEnergyMax, c_unitPropCurrent), c_fixedPrecisionAny);
+    lv_maxShields = FixedToString(UnitGetPropertyFixed(lp_unit, c_unitPropShieldsMax, c_unitPropCurrent), c_fixedPrecisionAny);
+    lv_maxSpeed = FixedToString(UnitGetPropertyFixed(lp_unit, c_unitPropMovementSpeed, c_unitPropCurrent), 2);
+    lv_facingAngle = FixedToString(UnitGetFacing(lp_unit), c_fixedPrecisionAny);
+
+    // Implementation
+    libNtve_gf_SetDialogItemText(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_name, lib0777E5D9_gf_StringPathToText(c_gameCatalogUnit, UnitGetType(EventUnit()), "Name"), lp_players);
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[0], lv_hP, lp_players);
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[1], lv_maxHP, lp_players);
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[2], lv_armor, lp_players);
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[3], lv_shields, lp_players);
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[4], lv_maxShields, lp_players);
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[5], lv_shieldArmor, lp_players);
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[6], lv_mP, lp_players);
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[7], lv_maxMP, lp_players);
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[9], lv_speed, lp_players);
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[10], lv_maxSpeed, lp_players);
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[11], lv_facingAngle, lp_players);
+}
+
+void lib0777E5D9_gf_UpdateWeaponProperties (string lp_weapon, string lp_unitName, string lp_unitType, int lp_player) {
+    // Variable Declarations
+    string lv_range;
+    string lv_damage;
+    string lv_atkSpeed;
+    string lv_dmgPt;
+    string lv_scanRange;
+    string lv_splashRadius;
+    string lv_delayMin;
+    string lv_delayMax;
+
+    // Variable Initialization
+    lv_range = "";
+    lv_damage = "";
+    lv_atkSpeed = "";
+    lv_dmgPt = "";
+    lv_scanRange = "";
+    lv_splashRadius = "";
+    lv_delayMin = "";
+    lv_delayMax = "";
+
+    // Implementation
+    lv_range = CatalogFieldValueGet(c_gameCatalogWeapon, lp_weapon, "Range", lp_player);
+    lv_atkSpeed = FixedToString((StringToFixed(CatalogFieldValueGet(c_gameCatalogWeapon, lp_weapon, "Period", lp_player)) * 1.0), c_fixedPrecisionAny);
+    lv_damage = lib0777E5D9_gf_GetWeaponDamage(lp_unitType, lp_unitName, lp_weapon, lp_player);
+    lv_dmgPt = CatalogFieldValueGet(c_gameCatalogWeapon, lp_weapon, "DamagePoint", lp_player);
+    lv_scanRange = CatalogFieldValueGet(c_gameCatalogWeapon, lp_weapon, "MinScanRange", lp_player);
+    lv_splashRadius = lib0777E5D9_gf_SearchForSplashRadius(lp_unitType, lp_unitName, lp_weapon);
+    lv_delayMin = CatalogFieldValueGet(c_gameCatalogWeapon, lp_weapon, "RandomDelayMin", lp_player);
+    lv_delayMax = CatalogFieldValueGet(c_gameCatalogWeapon, lp_weapon, "RandomDelayMax", lp_player);
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[0], lv_range, PlayerGroupSingle(lp_player));
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[1], lv_damage, PlayerGroupSingle(lp_player));
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[2], lv_atkSpeed, PlayerGroupSingle(lp_player));
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[3], lv_dmgPt, PlayerGroupSingle(lp_player));
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[4], lv_scanRange, PlayerGroupSingle(lp_player));
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[5], lv_splashRadius, PlayerGroupSingle(lp_player));
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[6], lv_delayMin, PlayerGroupSingle(lp_player));
+    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[7], lv_delayMax, PlayerGroupSingle(lp_player));
+}
+
+string lib0777E5D9_gf_SearchForSplashRadius (string lp_unitType, string lp_unitName, string lp_weaponName) {
+    // Variable Declarations
+    string lv_catalogEntry;
+    string lv_radius;
+    string lv_isBurrowed;
+    string lv_unitNameTrimmed;
+
+    // Variable Initialization
+    lv_catalogEntry = "";
+    lv_radius = "";
+    lv_isBurrowed = "";
+    lv_unitNameTrimmed = "";
+
+    // Implementation
+    lv_isBurrowed = StringSub((lp_unitType), (StringLength((lp_unitType)) - 7), StringLength((lp_unitType)));
+    lv_catalogEntry = ((lp_unitType) + "Search");
+    lv_radius = lib0777E5D9_gf_GetCatalogEntryRadius(lv_catalogEntry);
+    if ((lv_radius == "")) {
+        lv_catalogEntry = (lp_weaponName);
+        lv_radius = lib0777E5D9_gf_GetCatalogEntryRadius(lv_catalogEntry);
+    }
+
+    if ((lv_radius == "")) {
+        lv_catalogEntry = ((lp_weaponName) + "E");
+        lv_radius = lib0777E5D9_gf_GetCatalogEntryRadius(lv_catalogEntry);
+    }
+
+    if ((lv_radius == "")) {
+        lv_catalogEntry = ((lp_weaponName) + "Blast");
+        lv_radius = lib0777E5D9_gf_GetCatalogEntryRadius(lv_catalogEntry);
+    }
+
+    if ((lv_radius == "")) {
+        lv_catalogEntry = ((lp_weaponName) + "Damage");
+        lv_radius = lib0777E5D9_gf_GetCatalogEntryRadius(lv_catalogEntry);
+    }
+
+    if ((lv_radius == "")) {
+        lv_catalogEntry = ((lp_weaponName) + "U");
+        lv_radius = lib0777E5D9_gf_GetCatalogEntryRadius(lv_catalogEntry);
+    }
+
+    if ((lv_isBurrowed == "Burrowed")) {
+        lv_unitNameTrimmed = StringSub((lp_unitType), 1, (StringLength((lp_unitType)) - 8));
+        lv_catalogEntry = (lv_unitNameTrimmed + "Search");
+        lv_radius = lib0777E5D9_gf_GetCatalogEntryRadius(lv_catalogEntry);
+    }
+
+    return lv_radius;
+}
+
+string lib0777E5D9_gf_GetWeaponDamage (string lp_unitType, string lp_unitName, string lp_weaponName, int lp_player) {
+    // Variable Declarations
+    string lv_effect;
+    string lv_catalogEntry;
+    string lv_damage;
+
+    // Variable Initialization
+    lv_effect = "";
+    lv_catalogEntry = "";
+    lv_damage = "";
+
+    // Implementation
+    lv_effect = lib0777E5D9_gf_SearchForWeaponDamageEffect(lp_unitType, lp_unitName, lp_weaponName, lp_player);
+    lv_damage = lib0777E5D9_gf_GetCatalogEntryDamage(lv_effect, lp_player);
+    return lv_damage;
+}
+
+string lib0777E5D9_gf_SearchForWeaponDamageEffect (string lp_unitType, string lp_unitName, string lp_weaponName, int lp_player) {
+    // Variable Declarations
+    string lv_catalogEntry;
+    string lv_damage;
+
+    // Variable Initialization
+    lv_catalogEntry = "";
+    lv_damage = "";
+
+    // Implementation
+    lv_catalogEntry = (lp_weaponName);
+    lv_damage = lib0777E5D9_gf_GetCatalogEntryDamage(lv_catalogEntry, lp_player);
+    if ((lv_damage == "")) {
+        lv_catalogEntry = ((lp_weaponName) + "Damage");
+        lv_damage = lib0777E5D9_gf_GetCatalogEntryDamage(lv_catalogEntry, lp_player);
+    }
+
+    if ((lv_damage == "")) {
+        lv_catalogEntry = ((lp_weaponName) + "MU");
+        lv_damage = lib0777E5D9_gf_GetCatalogEntryDamage(lv_catalogEntry, lp_player);
+    }
+
+    if ((lv_damage == "")) {
+        lv_catalogEntry = ((lp_weaponName) + "U");
+        lv_damage = lib0777E5D9_gf_GetCatalogEntryDamage(lv_catalogEntry, lp_player);
+    }
+
+    if ((lv_damage == "")) {
+        lv_catalogEntry = ((lp_weaponName) + "U1");
+        lv_damage = lib0777E5D9_gf_GetCatalogEntryDamage(lv_catalogEntry, lp_player);
+    }
+
+    if ((lv_damage == "")) {
+        lv_catalogEntry = ((lp_weaponName) + "Blast");
+        lv_damage = lib0777E5D9_gf_GetCatalogEntryDamage(lv_catalogEntry, lp_player);
+    }
+
+    if ((lv_damage == "")) {
+        lv_catalogEntry = (((lp_unitType) + (lp_weaponName)) + "Damage");
+        lv_damage = lib0777E5D9_gf_GetCatalogEntryDamage(lv_catalogEntry, lp_player);
+    }
+
+    if ((lv_damage != "")) {
+        return lv_catalogEntry;
+    }
+    else {
+        return "";
+    }
+}
+
+string lib0777E5D9_gf_GetCatalogEntryRadius (string lp_catalogEntry) {
+    // Implementation
+    return CatalogFieldValueGet(c_gameCatalogEffect, lp_catalogEntry, "AreaArray[" + IntToString(0) + "].Radius", c_playerAny);
+}
+
+string lib0777E5D9_gf_GetCatalogEntryDamage (string lp_catalogEntry, int lp_player) {
+    // Implementation
+    return CatalogFieldValueGet(c_gameCatalogEffect, lp_catalogEntry, "Amount", lp_player);
+}
+
+bool lib0777E5D9_gf_HasAccess (int lp_player) {
+    // Implementation
+    if ((lib0777E5D9_gv_app.lv_players[lp_player].lv_hasModAccess == true)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+string lib0777E5D9_gf_SplitString (string lp_string, string lp_delimiter, int lp_returnWord) {
+    int init_i;
+
+    int auto6F750189_ae;
+    int auto6F750189_ai;
+
+    // Variable Declarations
+    int lv_stringLength;
+    string lv_character;
+    string[16] lv_words;
+    int lv_wordCount;
+    int lv_lastWordPosition;
+    int lv_i;
+
+    // Variable Initialization
+    lv_stringLength = StringLength(lp_string);
+    lv_character = "";
+    for (init_i = 0; init_i <= 15; init_i += 1) {
+        lv_words[init_i] = "";
+    }
+    lv_lastWordPosition = 1;
+
+    // Implementation
+    auto6F750189_ae = lv_stringLength;
+    auto6F750189_ai = 1;
+    lv_i = 1;
+    for ( ; ( (auto6F750189_ai >= 0 && lv_i <= auto6F750189_ae) || (auto6F750189_ai <= 0 && lv_i >= auto6F750189_ae) ) ; lv_i += auto6F750189_ai ) {
+        lv_character = StringSub(lp_string, lv_i, lv_i);
+        if ((lv_character == lp_delimiter)) {
+            lv_words[lv_wordCount] = StringSub(lp_string, lv_lastWordPosition, (lv_i - 1));
+            lv_lastWordPosition = (lv_i + 1);
+            lv_wordCount += 1;
+        }
+
+    }
+    lv_words[lv_wordCount] = StringSub(lp_string, lv_lastWordPosition, (lv_i - 1));
+    return lv_words[lp_returnWord];
+}
+
+string lib0777E5D9_gf_DecimalToHex (int lp_int) {
+    int init_i;
+
+    int auto86B3A6DE_val;
+    int auto36FE49D4_ae;
+    int auto36FE49D4_ai;
+
+    // Variable Declarations
+    int lv_i;
+    int lv_counter;
+    int lv_remainder;
+    string[17] lv_hexString;
+    string lv_finalString;
+
+    // Variable Initialization
+    for (init_i = 0; init_i <= 16; init_i += 1) {
+        lv_hexString[init_i] = "";
+    }
+    lv_finalString = "";
+
+    // Implementation
+    while ((lp_int != 0)) {
+        lv_remainder = ModI(lp_int, 16);
+        auto86B3A6DE_val = lv_remainder;
+        if (auto86B3A6DE_val == 10) {
+            lv_hexString[lv_i] = "A";
+        }
+        else if (auto86B3A6DE_val == 11) {
+            lv_hexString[lv_i] = "B";
+        }
+        else if (auto86B3A6DE_val == 12) {
+            lv_hexString[lv_i] = "C";
+        }
+        else if (auto86B3A6DE_val == 13) {
+            lv_hexString[lv_i] = "D";
+        }
+        else if (auto86B3A6DE_val == 14) {
+            lv_hexString[lv_i] = "E";
+        }
+        else if (auto86B3A6DE_val == 15) {
+            lv_hexString[lv_i] = "F";
+        }
+        else {
+            lv_hexString[lv_i] = (IntToString(lv_remainder) + "");
+        }
+        lp_int /= 16;
+        lv_i += 1;
+    }
+    auto36FE49D4_ae = 15;
+    auto36FE49D4_ai = 1;
+    lv_i = 0;
+    for ( ; ( (auto36FE49D4_ai >= 0 && lv_i <= auto36FE49D4_ae) || (auto36FE49D4_ai <= 0 && lv_i >= auto36FE49D4_ae) ) ; lv_i += auto36FE49D4_ai ) {
+        lv_finalString = (lv_hexString[lv_i] + lv_finalString);
+    }
+    if ((lv_finalString == "")) {
+        lv_finalString = "00";
+    }
+
+    return lv_finalString;
+}
+
+string lib0777E5D9_gf_ColorToHex (color lp_color) {
+    int autoEEB647D7_ae;
+    int autoEEB647D7_ai;
+
+    // Variable Declarations
+    int lv_i;
+    string lv_rGBString;
+    string lv_hexString;
+    int[3] lv_rGB;
+
+    // Variable Initialization
+    lv_rGBString = "";
+    lv_hexString = "";
+
+    // Implementation
+    lv_rGBString = libNtve_gf_ConvertColorToString(lp_color);
+    autoEEB647D7_ae = 2;
+    autoEEB647D7_ai = 1;
+    lv_i = 0;
+    for ( ; ( (autoEEB647D7_ai >= 0 && lv_i <= autoEEB647D7_ae) || (autoEEB647D7_ai <= 0 && lv_i >= autoEEB647D7_ae) ) ; lv_i += autoEEB647D7_ai ) {
+        lv_rGB[lv_i] = StringToInt(lib0777E5D9_gf_SplitString(lv_rGBString, ",", lv_i));
+    }
+    return (lib0777E5D9_gf_DecimalToHex(lv_rGB[0]) + lib0777E5D9_gf_DecimalToHex(lv_rGB[1]) + lib0777E5D9_gf_DecimalToHex(lv_rGB[2]));
+}
+
+int lib0777E5D9_gf_GetChosenRaceID (int lp_player) {
+    // Variable Declarations
+    int lv_raceID;
+
+    // Variable Initialization
+
+    // Implementation
+    lv_raceID = lib0777E5D9_gf_RaceToInt(PlayerRace(DialogControlGetSelectedItem(lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_list, lp_player)));
+    return lv_raceID;
+}
+
+int lib0777E5D9_gf_GetWeaponCount (unit lp_unit) {
+    int auto70E89D54_ae;
+    int auto70E89D54_ai;
+
+    // Variable Declarations
+    int lv_weaponID;
+    string lv_weaponLink;
+
+    // Variable Initialization
+
+    // Implementation
+    auto70E89D54_ae = 16;
+    auto70E89D54_ai = 1;
+    lv_weaponID = 1;
+    for ( ; ( (auto70E89D54_ai >= 0 && lv_weaponID <= auto70E89D54_ae) || (auto70E89D54_ai <= 0 && lv_weaponID >= auto70E89D54_ae) ) ; lv_weaponID += auto70E89D54_ai ) {
+        lv_weaponLink = UnitWeaponGet(lp_unit, lv_weaponID);
+        if ((lv_weaponLink == "")) {
+            return (lv_weaponID - 1);
+        }
+
+    }
+    return -1;
+}
+
+text lib0777E5D9_gf_StringPathToText (int lp_type, string lp_entry, string lp_fieldPath) {
+    // Variable Declarations
+    string lv_stringPath;
+
+    // Variable Initialization
+    lv_stringPath = "";
+
+    // Implementation
+    lv_stringPath = CatalogFieldValueGet(lp_type, lp_entry, lp_fieldPath, c_playerAny);
+    return StringExternal(lv_stringPath);
+}
+
+void lib0777E5D9_gf_ToggleGameUI (bool lp_enableUI, playergroup lp_players) {
+    // Implementation
+    if ((lp_enableUI == true)) {
+        UISetDragSelectEnabled(lp_players, false);
+        UISetCommandAllowed(lp_players, c_uiCommandAllowSmartClick, false);
+        UISetSelectionTypeEnabled(lp_players, c_localSelectionTypeUnknown, false);
+        libNtve_gf_HideGameUI(false, lp_players);
+    }
+    else {
+        UISetDragSelectEnabled(lp_players, true);
+        UISetSelectionTypeEnabled(lp_players, c_localSelectionTypeUnknown, true);
+        libNtve_gf_HideGameUI(true, lp_players);
+        UISetCommandAllowed(lp_players, c_uiCommandAllowSmartClick, true);
+    }
+}
+
+void lib0777E5D9_gf_SetPlayerModAccess () {
+    playergroup auto73ED535E_g;
+    int auto73ED535E_p;
+
+    // Variable Declarations
+    int lv_playerID;
+
+    // Variable Initialization
+
+    // Implementation
+    auto73ED535E_g = PlayerGroupActive(); 
+    auto73ED535E_p = 1;
+    for ( ; auto73ED535E_p <= PlayerGroupCount(auto73ED535E_g) ; auto73ED535E_p += BoolToInt(lv_playerID == PlayerGroupPlayer(auto73ED535E_g, auto73ED535E_p)) ) {
+        lv_playerID = PlayerGroupPlayer(auto73ED535E_g, auto73ED535E_p);
+        MeleeSetOption(lv_playerID, c_meleeOptionDefeat, false);
+        if ((GameAttributePlayerValue("[bnet:local/0.0/356799]1", lv_playerID) == "0002")) {
+            lib0777E5D9_gf_EnableModForPlayer(lv_playerID);
+        }
+        else {
+            lib0777E5D9_gv_app.lv_players[lv_playerID].lv_hasModAccess = false;
+        }
+    }
+    if ((lib0777E5D9_gv_app.lv_forceAccessForP1 == true)) {
+        lib0777E5D9_gf_EnableModForPlayer(1);
+    }
+
+}
+
+void lib0777E5D9_gf_AllyPlayersToModder () {
+    int auto073F023E_ae;
+    int auto073F023E_ai;
+
+    // Variable Declarations
+    int lv_playerID;
+    playergroup lv_players;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    libNtve_gf_SetPlayerGroupAlliance(PlayerGroupAll(), libNtve_ge_AllianceSetting_AllyWithSharedVisionAndControl);
+    auto073F023E_ae = 15;
+    auto073F023E_ai = 1;
+    lv_playerID = 0;
+    for ( ; ( (auto073F023E_ai >= 0 && lv_playerID <= auto073F023E_ae) || (auto073F023E_ai <= 0 && lv_playerID >= auto073F023E_ae) ) ; lv_playerID += auto073F023E_ai ) {
+        if ((lib0777E5D9_gv_app.lv_players[lv_playerID].lv_hasModAccess == false) && (lv_playerID > 0)) {
+            PlayerSetAlliance(0, c_allianceIdVision, lv_playerID, false);
+            PlayerSetAlliance(0, c_allianceIdControl, lv_playerID, false);
+            PlayerSetAlliance(0, c_allianceIdPower, lv_playerID, false);
+            PlayerSetAlliance(0, c_allianceIdDefeat, lv_playerID, false);
+            PlayerGroupAdd(lv_players, lv_playerID);
+        }
+
+    }
+    libNtve_gf_SetPlayerGroupAlliance(lv_players, libNtve_ge_AllianceSetting_Enemy);
+}
+
+void lib0777E5D9_gf_EnableModForPlayer (int lp_player) {
+    // Implementation
+    UIDisplayMessage(PlayerGroupSingle(lp_player), c_messageAreaChat, StringExternal("Param/Value/lib_0777E5D9_573C12ED"));
+    MeleeSetOption(lp_player, c_meleeOptionVictory, false);
+    MeleeSetOption(lp_player, c_meleeOptionReveal, false);
+    MeleeSetOption(lp_player, c_meleeOptionStalemate, false);
+    UnitGroupLoopBegin(UnitGroup(null, lp_player, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitRemove(UnitGroupLoopCurrent());
+    }
+    UnitGroupLoopEnd();
+    lib0777E5D9_gv_app.lv_players[lp_player].lv_hasModAccess = true;
+}
+
+bool lib0777E5D9_gf_IsMovingUnits (int lp_player) {
+    // Implementation
+    return lib0777E5D9_gv_app.lv_players[lp_player].lv_isMovingUnits;
+}
+
+bool lib0777E5D9_gf_IsCursorEnabled (int lp_player) {
+    // Implementation
+    return lib0777E5D9_gv_app.lv_players[lp_player].lv_isPlacingUnits;
+}
+
+actor lib0777E5D9_gf_GetMouseActor (int lp_player) {
+    // Implementation
+    return lib0777E5D9_gv_app.lv_players[lp_player].lv_cursorModel;
+}
+
+point lib0777E5D9_gf_GetMouseXY (int lp_player) {
+    // Implementation
+    return lib0777E5D9_gv_app.lv_players[lp_player].lv_cursorPosition;
+}
+
+bool lib0777E5D9_gf_GetMouseLeftClick (int lp_player) {
+    // Implementation
+    return lib0777E5D9_gv_app.lv_players[lp_player].lv_leftClickPressed;
+}
+
+void lib0777E5D9_gf_SetMouseCoords (int lp_player) {
+    // Implementation
+    lib0777E5D9_gv_app.lv_players[lp_player].lv_cursorPosition = Point(EventMouseMovedPosXWorld(), EventMouseMovedPosYWorld());
+}
+
+void lib0777E5D9_gf_SetMouseModel (int lp_player, string lp_model, fixed lp_scale, fixed lp_opacity, color lp_tint) {
+    // Variable Declarations
+    string lv_height;
+    string lv_unitType;
+    string lv_heightMessage;
+    actor lv_playerMouseActor;
+
+    // Variable Initialization
+    lv_height = CatalogFieldValueGet(c_gameCatalogUnit, lp_model, "Height", lp_player);
+    lv_unitType = UnitTypeFromString((lp_model));
+    lv_heightMessage = "";
+    lv_playerMouseActor = lib0777E5D9_gf_GetMouseActor(lp_player);
+
+    // Implementation
+    libNtve_gf_CreateModelAtPoint(lp_model, Point(0.0, 0.0));
+    lib0777E5D9_gv_app.lv_players[lp_player].lv_cursorModel = libNtve_gf_ActorLastCreated();
+    ActorSend(lv_playerMouseActor, libNtve_gf_SetOpacity(lp_opacity, 0.0));
+    ActorSend(lv_playerMouseActor, libNtve_gf_SetScale(lp_scale, lp_scale, lp_scale, 0.0));
+    lv_heightMessage = "SetHeight ";
+    lv_heightMessage = (lv_heightMessage + lv_height);
+    ActorSendAsText(lib0777E5D9_gv_app.lv_players[lp_player].lv_cursorModel, StringToText(lv_heightMessage));
+}
+
+trigger auto_lib0777E5D9_gf_UpdateCursorModelPositon_Trigger = null;
+int auto_lib0777E5D9_gf_UpdateCursorModelPositon_lp_player;
+
+void lib0777E5D9_gf_UpdateCursorModelPositon (int lp_player) {
+    auto_lib0777E5D9_gf_UpdateCursorModelPositon_lp_player = lp_player;
+
+    if (auto_lib0777E5D9_gf_UpdateCursorModelPositon_Trigger == null) {
+        auto_lib0777E5D9_gf_UpdateCursorModelPositon_Trigger = TriggerCreate("auto_lib0777E5D9_gf_UpdateCursorModelPositon_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib0777E5D9_gf_UpdateCursorModelPositon_Trigger, false, false);
+}
+
+bool auto_lib0777E5D9_gf_UpdateCursorModelPositon_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_lib0777E5D9_gf_UpdateCursorModelPositon_lp_player;
+
+    // Variable Declarations
+    string lv_newCursorPosition;
+
+    // Variable Initialization
+
+    // Implementation
+    lv_newCursorPosition = libNtve_gf_SetPosition2DH(PointGetX(lib0777E5D9_gf_GetMouseXY(lp_player)), PointGetY(lib0777E5D9_gf_GetMouseXY(lp_player)));
+    ActorSend(lib0777E5D9_gf_GetMouseActor(lp_player), lv_newCursorPosition);
+    if (true) {
+    }
+
+    return true;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Initialize
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_Initialize_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_playerID;
+    playergroup lv_players;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib0777E5D9_gf_SetPlayerModAccess();
+    lib0777E5D9_gf_AllyPlayersToModder();
+    TriggerExecute(lib0777E5D9_gt_InitAbilityMenu, true, false);
+    TriggerExecute(lib0777E5D9_gt_InitUnitPropsDialog, true, false);
+    TriggerExecute(lib0777E5D9_gt_InitWeaponDialog, true, false);
+    TriggerExecute(lib0777E5D9_gt_InitPlayerDropdown, true, false);
+    TriggerExecute(lib0777E5D9_gt_InitUnitListDialog, true, false);
+    TriggerExecute(lib0777E5D9_gt_InitUpgradeDialog, true, false);
+    TriggerExecute(lib0777E5D9_gt_InitWeaponsList, true, false);
+    TriggerExecute(lib0777E5D9_gt_InitMessageArea, true, false);
+    TriggerExecute(lib0777E5D9_gt_EventHandler, true, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_Initialize_Init () {
+    lib0777E5D9_gt_Initialize = TriggerCreate("lib0777E5D9_gt_Initialize_Func");
+    TriggerAddEventTimeElapsed(lib0777E5D9_gt_Initialize, 0.625, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Init Ability Menu
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_InitAbilityMenu_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_container;
+    int lv_closeButton;
+    int lv_closeButtonImage;
+    int lv_list;
+    int lv_castButton;
+
+    // Variable Initialization
+    lv_container = c_invalidDialogId;
+    lv_closeButton = c_invalidDialogControlId;
+    lv_closeButtonImage = c_invalidDialogControlId;
+    lv_list = c_invalidDialogControlId;
+    lv_castButton = c_invalidDialogControlId;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_container = lib0777E5D9_gf_DialogAddContainer(300, 350, 20, 20, c_anchorTopRight, PlayerGroupAll(), "", "Assets\\Textures\\ui_tooltip_frame_storymode.dds");
+    lv_list = lib0777E5D9_gf_AddListBox(lv_container, 280, 285, 10, 10, c_anchorTopLeft, PlayerGroupAll());
+    lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_listbox = lv_list;
+    lv_castButton = lib0777E5D9_gf_DialogAddButton(lv_container, 260, 30, 20, 20, PlayerGroupAll(), c_anchorBottomLeft, StringExternal("Param/Value/lib_0777E5D9_DAC6AA99"), null);
+    libNtve_gf_SetDialogItemStyle(lv_castButton, "_CastButton", PlayerGroupAll());
+    lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_castButton = lv_castButton;
+    lv_closeButton = lib0777E5D9_gf_DialogAddButton(lv_container, 32, 32, 10, 10, PlayerGroupAll(), c_anchorTopRight, null, "");
+    lv_closeButtonImage = lib0777E5D9_gf_DialogAddImage(lv_container, 32, 32, c_anchorTopRight, 10, 10, StringToText(""), "Assets\\Textures\\ui_ingame_pingmenu_closebtnover.dds", c_triggerImageTypeNormal, false, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), c_triggerBlendModeNormal);
+    DialogControlFadeTransparency(lv_closeButton, PlayerGroupAll(), 0.0, 100.0);
+    lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_closeButton = lv_closeButton;
+    lib0777E5D9_gf_AddAbilityToList("ForceField", "ForceField", lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_listbox, PlayerGroupAll());
+    lib0777E5D9_gf_AddAbilityToList("PsiStorm", "PsiStormPersistent", lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_listbox, PlayerGroupAll());
+    lib0777E5D9_gf_AddAbilityToList("Time Warp", "TemporalFieldCreatePersistent", lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_listbox, PlayerGroupAll());
+    lib0777E5D9_gf_AddAbilityToList("Vortex", "VortexCreatePersistent", lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_listbox, PlayerGroupAll());
+    lib0777E5D9_gf_AddAbilityToList("Disruption Web", "CorsairMPDisruptionWebCreatePersistent", lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_listbox, PlayerGroupAll());
+    lib0777E5D9_gf_AddAbilityToList("Nuke", "NukeDetonate", lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_listbox, PlayerGroupAll());
+    lib0777E5D9_gf_AddAbilityToList("EMP", "EMPLaunchMissile", lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_listbox, PlayerGroupAll());
+    lib0777E5D9_gf_AddAbilityToList("Fungal Growth", "FungalGrowthLaunchMissile", lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_listbox, PlayerGroupAll());
+    lib0777E5D9_gf_AddAbilityToList("Blinding Cloud", "BlindingCloudCP", lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_listbox, PlayerGroupAll());
+    lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_container = lv_container;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_InitAbilityMenu_Init () {
+    lib0777E5D9_gt_InitAbilityMenu = TriggerCreate("lib0777E5D9_gt_InitAbilityMenu_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: ToggleAbilityMenu
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_ToggleAbilityMenu_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_container;
+    bool lv_isVisible;
+
+    // Variable Initialization
+    lv_container = lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_container;
+    lv_isVisible = DialogIsVisible(lv_container, EventPlayer());
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_isCastingSpells == false) && (lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_isPlacingUnits == false)) {
+        if ((lv_isVisible == false)) {
+            DialogSetVisible(lv_container, PlayerGroupSingle(EventPlayer()), true);
+        }
+        else {
+            DialogSetVisible(lv_container, PlayerGroupSingle(EventPlayer()), false);
+        }
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_ToggleAbilityMenu_Init () {
+    lib0777E5D9_gt_ToggleAbilityMenu = TriggerCreate("lib0777E5D9_gt_ToggleAbilityMenu_Func");
+    TriggerAddEventKeyPressed(lib0777E5D9_gt_ToggleAbilityMenu, c_playerAny, c_keyComma, true, c_keyModifierStateIgnore, c_keyModifierStateIgnore, c_keyModifierStateIgnore);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: ToggleCastingAbilities
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_ToggleCastingAbilities_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_selectionID;
+    string lv_effect;
+
+    // Variable Initialization
+    lv_effect = "";
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+
+        if (!((EventDialogControl() == lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_castButton))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_isCastingSpells == false)) {
+        libNtve_gf_SetDialogItemText(lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_castButton, StringExternal("Param/Value/lib_0777E5D9_F5A98F59"), PlayerGroupSingle(EventPlayer()));
+        lib0777E5D9_gf_ToggleGameUI(true, PlayerGroupSingle(EventPlayer()));
+        lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_isCastingSpells = true;
+    }
+    else {
+        libNtve_gf_SetDialogItemText(lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_castButton, StringExternal("Param/Value/lib_0777E5D9_43295BB1"), PlayerGroupSingle(EventPlayer()));
+        lib0777E5D9_gf_ToggleGameUI(false, PlayerGroupSingle(EventPlayer()));
+        lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_isCastingSpells = false;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_ToggleCastingAbilities_Init () {
+    lib0777E5D9_gt_ToggleCastingAbilities = TriggerCreate("lib0777E5D9_gt_ToggleCastingAbilities_Func");
+    TriggerAddEventDialogControl(lib0777E5D9_gt_ToggleCastingAbilities, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AbilityCast
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_AbilityCast_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_selectionID;
+    string lv_effect;
+    point lv_mouseLocation;
+
+    // Variable Initialization
+    lv_effect = "";
+    lv_mouseLocation = Point(EventMouseClickedPosXWorld(), EventMouseClickedPosYWorld());
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+
+        if (!((lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_isCastingSpells == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_selectionID = (DialogControlGetSelectedItem(lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_listbox, EventPlayer()) - 1);
+    lv_effect = lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_data[lv_selectionID];
+    PlayerCreateEffectPoint(EventPlayer(), (lv_effect), lv_mouseLocation);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_AbilityCast_Init () {
+    lib0777E5D9_gt_AbilityCast = TriggerCreate("lib0777E5D9_gt_AbilityCast_Func");
+    TriggerAddEventMouseClicked(lib0777E5D9_gt_AbilityCast, c_playerAny, c_mouseButtonLeft, true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: InitWeaponsList
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_InitWeaponsList_Func (bool testConds, bool runActions) {
+    int autoFB883046_ae;
+    int autoFB883046_ai;
+    int auto85F041D3_ae;
+    int auto85F041D3_ai;
+
+    // Variable Declarations
+    int lv_container;
+    int lv_i;
+
+    // Variable Initialization
+    lv_container = lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_container;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_raceDropdown = lib0777E5D9_gf_DialogAddGenericItem(c_triggerControlTypePulldown, lv_container, c_anchorTopLeft, 150, 50, 10, 10, PlayerGroupAll(), false);
+    lib0777E5D9_gf_AddRacesToDropdown(lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_raceDropdown);
+    autoFB883046_ae = 3;
+    autoFB883046_ai = 1;
+    lv_i = 0;
+    for ( ; ( (autoFB883046_ai >= 0 && lv_i <= autoFB883046_ae) || (autoFB883046_ai <= 0 && lv_i >= autoFB883046_ae) ) ; lv_i += autoFB883046_ai ) {
+        auto85F041D3_ae = 3;
+        auto85F041D3_ai = 1;
+        lv_i = 0;
+        for ( ; ( (auto85F041D3_ai >= 0 && lv_i <= auto85F041D3_ae) || (auto85F041D3_ai <= 0 && lv_i >= auto85F041D3_ae) ) ; lv_i += auto85F041D3_ai ) {
+            lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_weaponLists[lv_i].lv_listbox = lib0777E5D9_gf_AddListBox(lv_container, 310, 190, 10, 60, c_anchorTopLeft, PlayerGroupAll());
+        }
+    }
+    lib0777E5D9_gf_LoadWeaponData();
+    lib0777E5D9_gf_CreateWeaponListCloseButton(32, 32, "Assets\\Textures\\ui_ingame_pingmenu_closebtnover.dds");
+    lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_confirmButton = lib0777E5D9_gf_DialogAddButton(lv_container, 300, 40, 0, 10, PlayerGroupAll(), c_anchorBottom, StringExternal("Param/Value/lib_0777E5D9_5668ED35"), "Assets\\Textures\\ui_checkboxbutton_normalpressed_terran.dds");
+    libNtve_gf_SetDialogItemImage2(lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_confirmButton, "Assets\\Textures\\ui_checkboxbutton_normaloverpressedover_terran.dds", PlayerGroupAll());
+    libNtve_gf_SetDialogItemStyle(lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_confirmButton, "_ConfirmChanges", PlayerGroupAll());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_InitWeaponsList_Init () {
+    lib0777E5D9_gt_InitWeaponsList = TriggerCreate("lib0777E5D9_gt_InitWeaponsList_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: SwitchWeaponLists
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_SwitchWeaponLists_Func (bool testConds, bool runActions) {
+    int autoAA89122B_ae;
+    int autoAA89122B_ai;
+
+    // Variable Declarations
+    int lv_selectedRaceID;
+    int lv_raceID;
+    int lv_raceDropdown;
+
+    // Variable Initialization
+    lv_raceDropdown = lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_raceDropdown;
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+
+        if (!((EventDialogControl() == lv_raceDropdown))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_selectedRaceID = (DialogControlGetSelectedItem(lv_raceDropdown, EventPlayer()) - 1);
+    DialogControlSetVisible(lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_weaponLists[lv_selectedRaceID].lv_listbox, PlayerGroupSingle(EventPlayer()), true);
+    autoAA89122B_ae = 3;
+    autoAA89122B_ai = 1;
+    lv_raceID = 0;
+    for ( ; ( (autoAA89122B_ai >= 0 && lv_raceID <= autoAA89122B_ae) || (autoAA89122B_ai <= 0 && lv_raceID >= autoAA89122B_ae) ) ; lv_raceID += autoAA89122B_ai ) {
+        if (((lv_raceID != lv_selectedRaceID))) {
+            DialogControlSetVisible(lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_weaponLists[lv_raceID].lv_listbox, PlayerGroupSingle(EventPlayer()), false);
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_SwitchWeaponLists_Init () {
+    lib0777E5D9_gt_SwitchWeaponLists = TriggerCreate("lib0777E5D9_gt_SwitchWeaponLists_Func");
+    TriggerAddEventDialogControl(lib0777E5D9_gt_SwitchWeaponLists, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeSelectionChanged);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: ToggleWeaponsList
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_ToggleWeaponsList_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_container;
+
+    // Variable Initialization
+    lv_container = lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_container;
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+
+        if (!((EventDialogControl() == lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_addWeaponButton))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((DialogIsVisible(lv_container, EventPlayer()) == true)) {
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_container, PlayerGroupSingle(EventPlayer()), false);
+    }
+    else {
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_container, PlayerGroupSingle(EventPlayer()), true);
+        DialogControlSetEnabled(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_addWeaponButton, PlayerGroupAll(), false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_ToggleWeaponsList_Init () {
+    lib0777E5D9_gt_ToggleWeaponsList = TriggerCreate("lib0777E5D9_gt_ToggleWeaponsList_Func");
+    TriggerAddEventDialogControl(lib0777E5D9_gt_ToggleWeaponsList, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: UpdateWeaponProperties
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_UpdateWeaponProperties_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_weapon;
+    int lv_selectedID;
+    unit lv_selectedUnit;
+    string lv_unitType;
+
+    // Variable Initialization
+    lv_selectedID = DialogControlGetSelectedItem(EventDialogControl(), EventPlayer());
+    lv_selectedUnit = lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_selectedUnitProperties.lv_unit;
+    lv_unitType = UnitGetType(lv_selectedUnit);
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+
+        if (!((EventDialogControl() == lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_weaponDropdown))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_weapon = UnitWeaponGet(lv_selectedUnit, lv_selectedID);
+    lib0777E5D9_gf_UpdateWeaponProperties(lv_weapon, (lv_unitType), lv_unitType, EventPlayer());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_UpdateWeaponProperties_Init () {
+    lib0777E5D9_gt_UpdateWeaponProperties = TriggerCreate("lib0777E5D9_gt_UpdateWeaponProperties_Func");
+    TriggerAddEventDialogControl(lib0777E5D9_gt_UpdateWeaponProperties, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeSelectionChanged);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AddWeaponToUnit
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_AddWeaponToUnit_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_unit;
+    int lv_selectedRaceID;
+    int lv_weaponID;
+    string lv_selectedWeapon;
+    int lv_weaponDropdown;
+
+    // Variable Initialization
+    lv_unit = UnitGroupUnit(UnitGroupSelected(EventPlayer()), 1);
+    lv_selectedRaceID = (DialogControlGetSelectedItem(lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_raceDropdown, EventPlayer()) - 1);
+    lv_weaponID = (DialogControlGetSelectedItem(lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_weaponLists[lv_selectedRaceID].lv_listbox, EventPlayer()) - 1);
+    lv_selectedWeapon = ((lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_weaponLists[lv_selectedRaceID].lv_data[lv_weaponID]));
+    lv_weaponDropdown = lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_weaponDropdown;
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+
+        if (!((EventDialogControl() == lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_confirmButton))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib0777E5D9_gf_GetWeaponCount(lv_unit) < 5)) {
+        UnitWeaponAdd(lv_unit, lv_selectedWeapon, null);
+        lib0777E5D9_gf_UpdateWeaponProperties(lv_selectedWeapon, (UnitGetType(lv_unit)), UnitGetType(lv_unit), EventPlayer());
+        Wait(0.0001, c_timeGame);
+        lib0777E5D9_gf_UpdateUnitWeaponDropdown(lv_unit, lv_weaponDropdown);
+        DialogControlSelectItem(lv_weaponDropdown, PlayerGroupSingle(EventPlayer()), 1);
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_container, PlayerGroupSingle(EventPlayer()), false);
+        DialogControlSetEnabled(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_addWeaponButton, PlayerGroupSingle(EventPlayer()), true);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_AddWeaponToUnit_Init () {
+    lib0777E5D9_gt_AddWeaponToUnit = TriggerCreate("lib0777E5D9_gt_AddWeaponToUnit_Func");
+    TriggerAddEventDialogControl(lib0777E5D9_gt_AddWeaponToUnit, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: RemoveWeaponFromUnit
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_RemoveWeaponFromUnit_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_unit;
+    int lv_weaponDropdown;
+
+    // Variable Initialization
+    lv_unit = UnitGroupUnit(UnitGroupSelected(EventPlayer()), 1);
+    lv_weaponDropdown = lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_weaponDropdown;
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+
+        if (!((EventDialogControl() == lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_deleteWeaponButton))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitWeaponRemove(lv_unit, UnitWeaponGet(lv_unit, DialogControlGetSelectedItem(lv_weaponDropdown, EventPlayer())));
+    Wait(0.0001, c_timeGame);
+    lib0777E5D9_gf_UpdateUnitWeaponDropdown(lv_unit, lv_weaponDropdown);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_RemoveWeaponFromUnit_Init () {
+    lib0777E5D9_gt_RemoveWeaponFromUnit = TriggerCreate("lib0777E5D9_gt_RemoveWeaponFromUnit_Func");
+    TriggerAddEventDialogControl(lib0777E5D9_gt_RemoveWeaponFromUnit, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: InitUnitListDialog
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_InitUnitListDialog_Func (bool testConds, bool runActions) {
+    int auto214523FD_ae;
+    int auto214523FD_ai;
+    int auto7B510836_ae;
+    int auto7B510836_ai;
+
+    // Variable Declarations
+    int lv_container;
+    int lv_raceID;
+    int lv_typeID;
+
+    // Variable Initialization
+    lv_container = lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_container;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_raceDropdown = lib0777E5D9_gf_DialogAddGenericItem(c_triggerControlTypePulldown, lv_container, c_anchorTopLeft, 150, 50, 0, 0, PlayerGroupAll(), true);
+    lib0777E5D9_gf_AddRacesToDropdown(DialogControlLastCreated());
+    lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_typeDropdown = lib0777E5D9_gf_DialogAddGenericItem(c_triggerControlTypePulldown, lv_container, c_anchorTopLeft, 250, 50, 150, 0, PlayerGroupAll(), true);
+    DialogControlAddItem(DialogControlLastCreated(), PlayerGroupAll(), StringExternal("Param/Value/lib_0777E5D9_D03677EC"));
+    DialogControlAddItem(DialogControlLastCreated(), PlayerGroupAll(), StringExternal("Param/Value/lib_0777E5D9_77D82D79"));
+    DialogControlAddItem(DialogControlLastCreated(), PlayerGroupAll(), StringExternal("Param/Value/lib_0777E5D9_8C251D02"));
+    DialogControlAddItem(DialogControlLastCreated(), PlayerGroupAll(), StringExternal("Param/Value/lib_0777E5D9_B89CF419"));
+    DialogControlSelectItem(DialogControlLastCreated(), PlayerGroupAll(), 1);
+    auto214523FD_ae = 3;
+    auto214523FD_ai = 1;
+    lv_raceID = 0;
+    for ( ; ( (auto214523FD_ai >= 0 && lv_raceID <= auto214523FD_ae) || (auto214523FD_ai <= 0 && lv_raceID >= auto214523FD_ae) ) ; lv_raceID += auto214523FD_ai ) {
+        auto7B510836_ae = 3;
+        auto7B510836_ai = 1;
+        lv_typeID = 0;
+        for ( ; ( (auto7B510836_ai >= 0 && lv_typeID <= auto7B510836_ae) || (auto7B510836_ai <= 0 && lv_typeID >= auto7B510836_ae) ) ; lv_typeID += auto7B510836_ai ) {
+            lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_races[lv_raceID].lv_types[lv_typeID].lv_listbox = lib0777E5D9_gf_AddListBox(lv_container, 400, 550, 0, 50, c_anchorTopLeft, PlayerGroupAll());
+        }
+    }
+    lib0777E5D9_gf_LoadUnitData();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_InitUnitListDialog_Init () {
+    lib0777E5D9_gt_InitUnitListDialog = TriggerCreate("lib0777E5D9_gt_InitUnitListDialog_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: ShowUnitList
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_ShowUnitList_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+    int lv_dialog;
+
+    // Variable Initialization
+    lv_player = EventPlayer();
+    lv_dialog = lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_container;
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_isPlacingUnits == false)) {
+        if ((DialogIsVisible(lv_dialog, lv_player) == false)) {
+            DialogSetVisible(lv_dialog, PlayerGroupSingle(lv_player), true);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_container, PlayerGroupSingle(lv_player), true);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButtonContainer, PlayerGroupSingle(lv_player), true);
+            DialogSetPosition(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButtonContainer, DialogGetAnchor(lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_container), 360, 15);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[0], PlayerGroupSingle(lv_player), false);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[1], PlayerGroupSingle(lv_player), false);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[2], PlayerGroupSingle(lv_player), false);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[3], PlayerGroupSingle(lv_player), false);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_container, PlayerGroupSingle(lv_player), false);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_container, PlayerGroupSingle(lv_player), false);
+        }
+        else {
+            DialogSetVisible(lv_dialog, PlayerGroupSingle(lv_player), false);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_container, PlayerGroupSingle(lv_player), false);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButtonContainer, PlayerGroupSingle(lv_player), false);
+        }
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_ShowUnitList_Init () {
+    lib0777E5D9_gt_ShowUnitList = TriggerCreate("lib0777E5D9_gt_ShowUnitList_Func");
+    TriggerAddEventKeyPressed(lib0777E5D9_gt_ShowUnitList, c_playerAny, c_keyPeriod, true, c_keyModifierStateIgnore, c_keyModifierStateIgnore, c_keyModifierStateIgnore);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: SwitchUnitLists
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_SwitchUnitLists_Func (bool testConds, bool runActions) {
+    int autoEBD32484_ae;
+    int autoEBD32484_ai;
+    int auto135AE885_ae;
+    int auto135AE885_ai;
+
+    // Variable Declarations
+    int lv_selectedRaceID;
+    int lv_selectedTypeID;
+    int lv_raceID;
+    int lv_typeID;
+    int lv_raceDropdown;
+    int lv_typeDropdown;
+
+    // Variable Initialization
+    lv_raceDropdown = lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_raceDropdown;
+    lv_typeDropdown = lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_typeDropdown;
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+
+        if (!(((EventDialogControl() == lv_raceDropdown) || (EventDialogControl() == lv_typeDropdown)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_selectedRaceID = (DialogControlGetSelectedItem(lv_raceDropdown, EventPlayer()) - 1);
+    lv_selectedTypeID = (DialogControlGetSelectedItem(lv_typeDropdown, EventPlayer()) - 1);
+    DialogControlSetVisible(lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_races[lv_selectedRaceID].lv_types[lv_selectedTypeID].lv_listbox, PlayerGroupAll(), true);
+    autoEBD32484_ae = 3;
+    autoEBD32484_ai = 1;
+    lv_raceID = 0;
+    for ( ; ( (autoEBD32484_ai >= 0 && lv_raceID <= autoEBD32484_ae) || (autoEBD32484_ai <= 0 && lv_raceID >= autoEBD32484_ae) ) ; lv_raceID += autoEBD32484_ai ) {
+        auto135AE885_ae = 3;
+        auto135AE885_ai = 1;
+        lv_typeID = 0;
+        for ( ; ( (auto135AE885_ai >= 0 && lv_typeID <= auto135AE885_ae) || (auto135AE885_ai <= 0 && lv_typeID >= auto135AE885_ae) ) ; lv_typeID += auto135AE885_ai ) {
+            if (((lv_typeID != lv_selectedTypeID) || (lv_raceID != lv_selectedRaceID))) {
+                DialogControlSetVisible(lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_races[lv_raceID].lv_types[lv_typeID].lv_listbox, PlayerGroupSingle(EventPlayer()), false);
+            }
+
+        }
+    }
+    if ((lv_selectedRaceID < 3) && (DialogControlGetItemCount(lv_typeDropdown, EventPlayer()) == 4)) {
+        DialogControlRemoveItem(lv_typeDropdown, PlayerGroupSingle(EventPlayer()), 3);
+        DialogControlRemoveItem(lv_typeDropdown, PlayerGroupSingle(EventPlayer()), 3);
+    }
+
+    if ((lv_selectedRaceID > 2) && (DialogControlGetItemCount(lv_typeDropdown, EventPlayer()) == 2)) {
+        DialogControlAddItem(lv_typeDropdown, PlayerGroupSingle(EventPlayer()), StringExternal("Param/Value/lib_0777E5D9_F314BF7C"));
+        DialogControlAddItem(lv_typeDropdown, PlayerGroupSingle(EventPlayer()), StringExternal("Param/Value/lib_0777E5D9_33169B49"));
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_SwitchUnitLists_Init () {
+    lib0777E5D9_gt_SwitchUnitLists = TriggerCreate("lib0777E5D9_gt_SwitchUnitLists_Func");
+    TriggerAddEventDialogControl(lib0777E5D9_gt_SwitchUnitLists, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeSelectionChanged);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: InitUpgradeDialog
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_InitUpgradeDialog_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_playerID;
+
+    // Variable Initialization
+    lv_playerID = DialogControlGetSelectedItem(lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_list, EventPlayer());
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib0777E5D9_gf_CreateUpgradeContainers(450, 140, 20, "Assets\\Textures\\ui_mission_leaderboard_frame_unit.dds");
+    lib0777E5D9_gf_CreateUpgradeCloseButton(40, 40, "Assets\\Textures\\ui_ingame_pingmenu_closebtnover.dds");
+    lib0777E5D9_gf_LoadUpgradeData();
+    lib0777E5D9_gf_DisplayAllUpgradeTables(lib0777E5D9_gf_RaceToInt(PlayerRace(lv_playerID)), 10);
+    lib0777E5D9_gf_ResizeUpgradeContainers(EventPlayer());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_InitUpgradeDialog_Init () {
+    lib0777E5D9_gt_InitUpgradeDialog = TriggerCreate("lib0777E5D9_gt_InitUpgradeDialog_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: ToggleUpgradeUI
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_ToggleUpgradeUI_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_isPlacingUnits == false)) {
+        if ((DialogIsVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[0], EventPlayer()) == false)) {
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_container, PlayerGroupSingle(EventPlayer()), true);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButtonContainer, PlayerGroupSingle(EventPlayer()), true);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[0], PlayerGroupSingle(EventPlayer()), true);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[1], PlayerGroupSingle(EventPlayer()), true);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[2], PlayerGroupSingle(EventPlayer()), true);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[3], PlayerGroupSingle(EventPlayer()), true);
+            DialogSetPosition(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButtonContainer, DialogGetAnchor(lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_container), 430, 15);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_container, PlayerGroupSingle(EventPlayer()), false);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_container, PlayerGroupSingle(EventPlayer()), false);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_container, PlayerGroupSingle(EventPlayer()), false);
+        }
+        else {
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_container, PlayerGroupSingle(EventPlayer()), false);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButtonContainer, PlayerGroupSingle(EventPlayer()), false);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[0], PlayerGroupSingle(EventPlayer()), false);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[1], PlayerGroupSingle(EventPlayer()), false);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[2], PlayerGroupSingle(EventPlayer()), false);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[3], PlayerGroupSingle(EventPlayer()), false);
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_container, PlayerGroupSingle(EventPlayer()), false);
+        }
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_ToggleUpgradeUI_Init () {
+    lib0777E5D9_gt_ToggleUpgradeUI = TriggerCreate("lib0777E5D9_gt_ToggleUpgradeUI_Func");
+    TriggerAddEventKeyPressed(lib0777E5D9_gt_ToggleUpgradeUI, c_playerAny, c_keyU, true, c_keyModifierStateIgnore, c_keyModifierStateIgnore, c_keyModifierStateIgnore);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: InitMessageArea
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_InitMessageArea_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_container;
+
+    // Variable Initialization
+    lv_container = c_invalidDialogId;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_container = lib0777E5D9_gf_DialogAddContainer(600, 300, 0, 400, c_anchorBottom, PlayerGroupAll(), "", "");
+    lib0777E5D9_gv_app.lv_interface.lv_messages.lv_container = lv_container;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_InitMessageArea_Init () {
+    lib0777E5D9_gt_InitMessageArea = TriggerCreate("lib0777E5D9_gt_InitMessageArea_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: InitPlayerDropdown
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_InitPlayerDropdown_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_textString;
+    text lv_text;
+    int lv_color;
+    string lv_colorString;
+    int[3] lv_rGB;
+    int lv_i;
+    string lv_rGBHex;
+
+    // Variable Initialization
+    lv_textString = "";
+    lv_color = 1;
+    lv_colorString = "";
+    lv_rGBHex = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    HelpPanelAddTutorial(PlayerGroupAll(), StringExternal("Param/Value/lib_0777E5D9_9AF23144"), StringExternal("Param/Value/lib_0777E5D9_D0448326"), "EditorData\\Images\\TriggerLabels\\Question.tga", "", true);
+    PlayerGroupLoopBegin(PlayerGroupActive());
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        lv_rGBHex = lib0777E5D9_gf_ColorToHex(libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(PlayerGroupLoopCurrent(), false)));
+        lv_textString = ("<c val=\"" + lv_rGBHex + "\">");
+        lv_textString = (lv_textString + "| ");
+        lv_text = ((StringToText(lv_textString) + StringExternal("Param/Value/lib_0777E5D9_FA2E9603")) + PlayerName(PlayerGroupLoopCurrent()));
+        lv_i += 1;
+        DialogControlAddItem(lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_list, PlayerGroupAll(), lv_text);
+    }
+    PlayerGroupLoopEnd();
+    DialogControlSelectItem(lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_list, PlayerGroupAll(), 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_InitPlayerDropdown_Init () {
+    lib0777E5D9_gt_InitPlayerDropdown = TriggerCreate("lib0777E5D9_gt_InitPlayerDropdown_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: HandlePlayerDropDown
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_HandlePlayerDropDown_Func (bool testConds, bool runActions) {
+    int auto69EAD36A_ae;
+    int auto69EAD36A_ai;
+    int autoE4D537FB_ae;
+    int autoE4D537FB_ai;
+    int auto4E84B6E3_ae;
+    int auto4E84B6E3_ai;
+    int auto2300A4DC_ae;
+    int auto2300A4DC_ai;
+
+    // Variable Declarations
+    int lv_raceID;
+    int lv_typeID;
+    int lv_dataID;
+
+    // Variable Initialization
+    lv_raceID = lib0777E5D9_gf_GetChosenRaceID(EventPlayer());
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+
+        if (!((EventDialogControl() == lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_list))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto69EAD36A_ae = 3;
+    auto69EAD36A_ai = 1;
+    lv_typeID = 0;
+    for ( ; ( (auto69EAD36A_ai >= 0 && lv_typeID <= auto69EAD36A_ae) || (auto69EAD36A_ai <= 0 && lv_typeID >= auto69EAD36A_ae) ) ; lv_typeID += auto69EAD36A_ai ) {
+        autoE4D537FB_ae = lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[0].lv_types[lv_typeID].lv_dataID;
+        autoE4D537FB_ai = 1;
+        lv_dataID = 0;
+        for ( ; ( (autoE4D537FB_ai >= 0 && lv_dataID <= autoE4D537FB_ae) || (autoE4D537FB_ai <= 0 && lv_dataID >= autoE4D537FB_ae) ) ; lv_dataID += autoE4D537FB_ai ) {
+            DialogControlDestroy(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[0].lv_types[lv_typeID].lv_data[lv_dataID].lv_image);
+            DialogControlDestroy(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[0].lv_types[lv_typeID].lv_data[lv_dataID].lv_button);
+        }
+        auto4E84B6E3_ae = lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[1].lv_types[lv_typeID].lv_dataID;
+        auto4E84B6E3_ai = 1;
+        lv_dataID = 0;
+        for ( ; ( (auto4E84B6E3_ai >= 0 && lv_dataID <= auto4E84B6E3_ae) || (auto4E84B6E3_ai <= 0 && lv_dataID >= auto4E84B6E3_ae) ) ; lv_dataID += auto4E84B6E3_ai ) {
+            DialogControlDestroy(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[1].lv_types[lv_typeID].lv_data[lv_dataID].lv_image);
+            DialogControlDestroy(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[1].lv_types[lv_typeID].lv_data[lv_dataID].lv_button);
+        }
+        auto2300A4DC_ae = lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[2].lv_types[lv_typeID].lv_dataID;
+        auto2300A4DC_ai = 1;
+        lv_dataID = 0;
+        for ( ; ( (auto2300A4DC_ai >= 0 && lv_dataID <= auto2300A4DC_ae) || (auto2300A4DC_ai <= 0 && lv_dataID >= auto2300A4DC_ae) ) ; lv_dataID += auto2300A4DC_ai ) {
+            DialogControlDestroy(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[2].lv_types[lv_typeID].lv_data[lv_dataID].lv_image);
+            DialogControlDestroy(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[2].lv_types[lv_typeID].lv_data[lv_dataID].lv_button);
+        }
+    }
+    lib0777E5D9_gf_DisplayAllUpgradeTables(lv_raceID, 10);
+    lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_selectedPlayerRace = PlayerRace(lv_raceID);
+    lib0777E5D9_gf_CheckUpgradeStatus(DialogControlGetSelectedItem(lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_list, EventPlayer()));
+    lib0777E5D9_gf_ResizeUpgradeContainers(EventPlayer());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_HandlePlayerDropDown_Init () {
+    lib0777E5D9_gt_HandlePlayerDropDown = TriggerCreate("lib0777E5D9_gt_HandlePlayerDropDown_Func");
+    TriggerAddEventDialogControl(lib0777E5D9_gt_HandlePlayerDropDown, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeSelectionChanged);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Clear Chat
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_ClearChat_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UIClearMessages(PlayerGroupSingle(EventPlayer()), c_messageAreaAll);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_ClearChat_Init () {
+    lib0777E5D9_gt_ClearChat = TriggerCreate("lib0777E5D9_gt_ClearChat_Func");
+    TriggerAddEventChatMessage(lib0777E5D9_gt_ClearChat, c_playerAny, "cls", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Event Handler
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_EventHandler_Func (bool testConds, bool runActions) {
+    int auto414F2EA7_ae;
+    int auto414F2EA7_ai;
+
+    // Variable Declarations
+    int lv_playerID;
+    int lv_selectedPlayer;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    while ((TriggerIsEnabled(TriggerGetCurrent()) == true)) {
+        auto414F2EA7_ae = 15;
+        auto414F2EA7_ai = 1;
+        lv_playerID = 0;
+        for ( ; ( (auto414F2EA7_ai >= 0 && lv_playerID <= auto414F2EA7_ae) || (auto414F2EA7_ai <= 0 && lv_playerID >= auto414F2EA7_ae) ) ; lv_playerID += auto414F2EA7_ai ) {
+            if (lib0777E5D9_gf_HasAccess(lv_playerID)) {
+                if ((lib0777E5D9_gv_app.lv_players[lv_playerID].lv_leftClickPressed == true)) {
+                    lv_selectedPlayer = DialogControlGetSelectedItem(lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_list, lv_playerID);
+                    lib0777E5D9_gf_PlaceUnit(lv_playerID, lv_selectedPlayer, UnitTypeFromString((lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_selectedUnit)));
+                }
+
+                if ((lib0777E5D9_gv_app.lv_players[lv_playerID].lv_selectedUnitProperties.lv_unit != null)) {
+                    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[3], FixedToString(UnitGetPropertyFixed(lib0777E5D9_gv_app.lv_players[lv_playerID].lv_selectedUnitProperties.lv_unit, c_unitPropShields, c_unitPropCurrent), 2), PlayerGroupSingle(lv_playerID));
+                    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[6], FixedToString(UnitGetPropertyFixed(lib0777E5D9_gv_app.lv_players[lv_playerID].lv_selectedUnitProperties.lv_unit, c_unitPropEnergy, c_unitPropCurrent), 2), PlayerGroupSingle(lv_playerID));
+                    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[8], FixedToString(UnitGetFacing(lib0777E5D9_gv_app.lv_players[lv_playerID].lv_selectedUnitProperties.lv_unit), 2), PlayerGroupSingle(lv_playerID));
+                    lib0777E5D9_gf_UpdateEditBox(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[9], FixedToString(UnitGetPropertyFixed(lib0777E5D9_gv_app.lv_players[lv_playerID].lv_selectedUnitProperties.lv_unit, c_unitPropMovementSpeedCurrent, c_unitPropCurrent), 2), PlayerGroupSingle(lv_playerID));
+                }
+
+                if ((lib0777E5D9_gv_app.lv_players[lv_playerID].lv_isMovingUnits == true)) {
+                    UnitGroupLoopBegin(UnitGroupSelected(lv_playerID));
+                    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+                        UnitSetPosition(UnitGroupLoopCurrent(), lib0777E5D9_gv_app.lv_players[lv_playerID].lv_cursorPosition, false);
+                    }
+                    UnitGroupLoopEnd();
+                }
+
+            }
+
+        }
+        Wait(0.075, c_timeGame);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_EventHandler_Init () {
+    lib0777E5D9_gt_EventHandler = TriggerCreate("lib0777E5D9_gt_EventHandler_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: CloseButtonEvents
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_CloseButtonEvents_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+
+        if (!(((DialogControlGetType(EventDialogControl()) == c_triggerControlTypeImage) || (DialogControlGetType(EventDialogControl()) == c_triggerControlTypeButton)))) {
+            return false;
+        }
+
+        if (!((DialogControlGetType(EventDialogControl()) != c_triggerControlTypePulldown))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventDialogControl() == lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_closeButton)) {
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_container, PlayerGroupSingle(EventPlayer()), false);
+        if ((lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_isCastingSpells == true)) {
+            lib0777E5D9_gf_ToggleGameUI(false, PlayerGroupSingle(EventPlayer()));
+            libNtve_gf_SetDialogItemText(lib0777E5D9_gv_app.lv_interface.lv_abilities.lv_castButton, StringExternal("Param/Value/lib_0777E5D9_5B9F190F"), PlayerGroupSingle(EventPlayer()));
+            lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_isCastingSpells = false;
+        }
+
+        return true;
+    }
+
+    if ((EventDialogControl() == lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButton) && (DialogIsVisible(lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_container, EventPlayer()) == true) && (DialogIsVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[0], EventPlayer()) == false) && (lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_isPlacingUnits == false)) {
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_container, PlayerGroupSingle(EventPlayer()), false);
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButtonContainer, PlayerGroupSingle(EventPlayer()), false);
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_container, PlayerGroupSingle(EventPlayer()), false);
+        return true;
+    }
+
+    if ((EventDialogControl() == lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_closeButton)) {
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_weaponList.lv_container, PlayerGroupSingle(EventPlayer()), false);
+        DialogControlSetEnabled(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_addWeaponButton, PlayerGroupAll(), true);
+        return true;
+    }
+
+    if ((EventDialogControl() == lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButton) && (lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_isPlacingUnits == false)) {
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_container, PlayerGroupAll(), false);
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButtonContainer, PlayerGroupAll(), false);
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[0], PlayerGroupAll(), false);
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[1], PlayerGroupAll(), false);
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[2], PlayerGroupAll(), false);
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[3], PlayerGroupAll(), false);
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_container, PlayerGroupAll(), false);
+        return true;
+    }
+
+    if (((EventDialogControl() == lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_closeButton) || (EventDialogControl() == lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_closeButtonImage))) {
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_container, PlayerGroupAll(), false);
+        DialogSetPosition(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_container, c_anchorBottomLeft, DialogGetOffsetX(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_container), DialogGetOffsetY(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_container));
+        return true;
+    }
+
+    if ((EventDialogControl() == lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_closeButton)) {
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_container, PlayerGroupAll(), false);
+        return true;
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_CloseButtonEvents_Init () {
+    lib0777E5D9_gt_CloseButtonEvents = TriggerCreate("lib0777E5D9_gt_CloseButtonEvents_Func");
+    TriggerAddEventDialogControl(lib0777E5D9_gt_CloseButtonEvents, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: UpgradeButtonEvents
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_UpgradeButtonEvents_Func (bool testConds, bool runActions) {
+    int autoFC2F67D8_val;
+
+    // Variable Declarations
+    int lv_container;
+    int lv_raceID;
+    int lv_typeID;
+    int lv_upgID;
+    int lv_x;
+    int lv_y;
+    int lv_i;
+
+    // Variable Initialization
+    lv_container = c_invalidDialogId;
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+
+        if (!(((DialogControlGetType(EventDialogControl()) == c_triggerControlTypeImage) || (DialogControlGetType(EventDialogControl()) == c_triggerControlTypeButton)))) {
+            return false;
+        }
+
+        if (!((DialogControlGetType(EventDialogControl()) != c_triggerControlTypePulldown))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_raceID = lib0777E5D9_gf_GetChosenRaceID(EventPlayer());
+    lv_typeID = lib0777E5D9_gf_GetUsedUpgradeContainer(DialogControlGetDialog(EventDialogControl()));
+    lv_x = DialogControlGetOffsetX(EventDialogControl(), EventPlayer());
+    lv_y = DialogControlGetOffsetY(EventDialogControl(), EventPlayer());
+    lv_upgID = lib0777E5D9_gf_GetUpgradeIDFromXYOffset(lv_x, lv_y, PlayerGroupSingle(EventPlayer()), 7);
+    autoFC2F67D8_val = EventDialogControlEventType();
+    if (autoFC2F67D8_val == c_triggerControlEventTypeClick) {
+        lib0777E5D9_gv_app.lv_interface.lv_tech.lv_selectedUpgrade = lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lv_raceID].lv_types[lv_typeID].lv_data[lv_upgID].lv_name;
+        lib0777E5D9_gf_ToggleUpgrade(((lib0777E5D9_gv_app.lv_interface.lv_tech.lv_selectedUpgrade)), lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lv_raceID].lv_types[lv_typeID].lv_data[lv_upgID].lv_image, DialogControlGetSelectedItem(lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_list, EventPlayer()));
+    }
+    else if (autoFC2F67D8_val == c_triggerControlEventTypeMouseEnter) {
+        DialogControlFadeTransparency(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lv_raceID].lv_types[lv_typeID].lv_data[lv_upgID].lv_image, PlayerGroupAll(), 0.0, 50.0);
+    }
+    else if (autoFC2F67D8_val == c_triggerControlEventTypeMouseExit) {
+        DialogControlFadeTransparency(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_races[lv_raceID].lv_types[lv_typeID].lv_data[lv_upgID].lv_image, PlayerGroupAll(), 0.0, 0.0);
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_UpgradeButtonEvents_Init () {
+    lib0777E5D9_gt_UpgradeButtonEvents = TriggerCreate("lib0777E5D9_gt_UpgradeButtonEvents_Func");
+    TriggerAddEventDialogControl(lib0777E5D9_gt_UpgradeButtonEvents, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeMouseEnter);
+    TriggerAddEventDialogControl(lib0777E5D9_gt_UpgradeButtonEvents, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeMouseExit);
+    TriggerAddEventDialogControl(lib0777E5D9_gt_UpgradeButtonEvents, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: UpdateUpgradeDialogStatus
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_UpdateUpgradeDialogStatus_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib0777E5D9_gf_CheckUpgradeStatus(EventPlayer());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_UpdateUpgradeDialogStatus_Init () {
+    lib0777E5D9_gt_UpdateUpgradeDialogStatus = TriggerCreate("lib0777E5D9_gt_UpdateUpgradeDialogStatus_Func");
+    TriggerAddEventUnitResearchProgress(lib0777E5D9_gt_UpdateUpgradeDialogStatus, null, c_unitProgressStageComplete);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: SaveUnitStats
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_SaveUnitStats_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_selectedUnit;
+    unitgroup lv_selectedUnitGroup;
+    int lv_owner;
+    lib0777E5D9_gs_UnitProperties lv_props;
+
+    // Variable Initialization
+    lv_selectedUnit = lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_selectedUnitProperties.lv_unit;
+    lv_selectedUnitGroup = lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_selectedUnitProperties.lv_unitGroup;
+    lv_owner = UnitGetOwner(lv_selectedUnit);
+    lv_props.lv_unitGroup = UnitGroupEmpty();
+    lv_props.lv_weapon.lv_name = "";
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+
+        if (!((EventDialogControl() == lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_confirmButton))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_props.lv_hP = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[0], EventPlayer()));
+    lv_props.lv_maxHP = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[1], EventPlayer()));
+    lv_props.lv_armor = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[2], EventPlayer()));
+    lv_props.lv_shields = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[3], EventPlayer()));
+    lv_props.lv_maxShields = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[4], EventPlayer()));
+    lv_props.lv_shieldArmor = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[5], EventPlayer()));
+    lv_props.lv_maxMP = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[7], EventPlayer()));
+    lv_props.lv_facingAngle = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[8], EventPlayer()));
+    lv_props.lv_maxSpeed = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[10], EventPlayer()));
+    if ((lv_selectedUnit != null)) {
+        UnitSetPropertyFixed(lv_selectedUnit, c_unitPropLife, lv_props.lv_hP);
+        UnitSetPropertyFixed(lv_selectedUnit, c_unitPropLifeMax, lv_props.lv_maxHP);
+        UnitSetPropertyFixed(lv_selectedUnit, c_unitPropShields, lv_props.lv_shields);
+        UnitSetPropertyFixed(lv_selectedUnit, c_unitPropShieldsMax, lv_props.lv_maxShields);
+        UnitSetPropertyFixed(lv_selectedUnit, c_unitPropEnergyMax, lv_props.lv_maxMP);
+        UnitSetPropertyFixed(lv_selectedUnit, c_unitPropMovementSpeed, lv_props.lv_maxSpeed);
+        CatalogFieldValueSet(c_gameCatalogUnit, UnitGetType(lv_selectedUnit), "LifeArmor", lv_owner, FixedToString(lv_props.lv_armor, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogUnit, UnitGetType(lv_selectedUnit), "ShieldArmor", lv_owner, FixedToString(lv_props.lv_shieldArmor, c_fixedPrecisionAny));
+    }
+    else {
+        UnitGroupLoopBegin(UnitGroupSelected(EventPlayer()));
+        for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+            if ((libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[0], EventPlayer()) != "")) {
+                UnitSetPropertyFixed(UnitGroupLoopCurrent(), c_unitPropLife, lv_props.lv_hP);
+            }
+
+            if ((libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[1], EventPlayer()) != "")) {
+                UnitSetPropertyFixed(UnitGroupLoopCurrent(), c_unitPropLifeMax, lv_props.lv_maxHP);
+            }
+
+            if ((libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[2], EventPlayer()) != "")) {
+                CatalogFieldValueSet(c_gameCatalogUnit, UnitGetType(UnitGroupLoopCurrent()), "LifeArmor", lv_owner, FixedToString(lv_props.lv_armor, c_fixedPrecisionAny));
+            }
+
+            if ((libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[3], EventPlayer()) != "")) {
+                UnitSetPropertyFixed(UnitGroupLoopCurrent(), c_unitPropShields, lv_props.lv_shields);
+            }
+
+            if ((libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[4], EventPlayer()) != "")) {
+                UnitSetPropertyFixed(UnitGroupLoopCurrent(), c_unitPropShieldsMax, lv_props.lv_maxShields);
+            }
+
+            if ((libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[5], EventPlayer()) != "")) {
+                CatalogFieldValueSet(c_gameCatalogUnit, UnitGetType(UnitGroupLoopCurrent()), "ShieldArmor", lv_owner, FixedToString(lv_props.lv_shieldArmor, c_fixedPrecisionAny));
+            }
+
+            if ((libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[7], EventPlayer()) != "")) {
+                UnitSetPropertyFixed(UnitGroupLoopCurrent(), c_unitPropEnergyMax, lv_props.lv_maxMP);
+            }
+
+            if ((libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[10], EventPlayer()) != "")) {
+                UnitSetPropertyFixed(UnitGroupLoopCurrent(), c_unitPropMovementSpeed, lv_props.lv_maxSpeed);
+            }
+
+        }
+        UnitGroupLoopEnd();
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_SaveUnitStats_Init () {
+    lib0777E5D9_gt_SaveUnitStats = TriggerCreate("lib0777E5D9_gt_SaveUnitStats_Func");
+    TriggerAddEventDialogControl(lib0777E5D9_gt_SaveUnitStats, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: SaveWeaponStats
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_SaveWeaponStats_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_selectedUnit;
+    string lv_selectedUnitWeapon;
+    int lv_owner;
+    lib0777E5D9_gs_Weapon lv_newWeapon;
+    string lv_damageEffect;
+
+    // Variable Initialization
+    lv_selectedUnit = lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_selectedUnitProperties.lv_unit;
+    lv_selectedUnitWeapon = UnitWeaponGet(lv_selectedUnit, DialogControlGetSelectedItem(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_weaponDropdown, EventPlayer()));
+    lv_owner = UnitGetOwner(lv_selectedUnit);
+    lv_newWeapon.lv_name = "";
+    lv_damageEffect = "";
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+
+        if (!((EventDialogControl() == lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_confirmButton))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_newWeapon.lv_range = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[0], EventPlayer()));
+    lv_newWeapon.lv_damage = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[1], EventPlayer()));
+    lv_newWeapon.lv_attackSpeed = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[2], EventPlayer()));
+    lv_newWeapon.lv_damagePoint = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[3], EventPlayer()));
+    lv_newWeapon.lv_scanRange = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[4], EventPlayer()));
+    lv_newWeapon.lv_splashRadius = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[5], EventPlayer()));
+    lv_newWeapon.lv_delayMin = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[6], EventPlayer()));
+    lv_newWeapon.lv_delayMax = StringToFixed(libNtve_gf_DialogItemEditValue(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[7], EventPlayer()));
+    lv_damageEffect = lib0777E5D9_gf_SearchForWeaponDamageEffect(UnitGetType(lv_selectedUnit), (UnitGetType(lv_selectedUnit)), lv_selectedUnitWeapon, EventPlayer());
+    if ((lv_selectedUnit != null)) {
+        lib0777E5D9_gf_SaveTargetFilters(lv_selectedUnitWeapon, lv_owner, EventPlayer());
+        CatalogFieldValueSet(c_gameCatalogWeapon, lv_selectedUnitWeapon, "Range", lv_owner, FixedToString(lv_newWeapon.lv_range, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogWeapon, lv_selectedUnitWeapon, "Period", lv_owner, FixedToString(lv_newWeapon.lv_attackSpeed, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogWeapon, lv_selectedUnitWeapon, "DamagePoint", lv_owner, FixedToString(lv_newWeapon.lv_damagePoint, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogWeapon, lv_selectedUnitWeapon, "MinScanRange", lv_owner, FixedToString(lv_newWeapon.lv_scanRange, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogWeapon, lv_selectedUnitWeapon, "RandomDelayMin", lv_owner, FixedToString(lv_newWeapon.lv_delayMin, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogWeapon, lv_selectedUnitWeapon, "RandomDelayMax", lv_owner, FixedToString(lv_newWeapon.lv_delayMax, c_fixedPrecisionAny));
+        if ((lv_damageEffect != "")) {
+            CatalogFieldValueSet(c_gameCatalogEffect, lv_damageEffect, "Amount", lv_owner, FixedToString(lv_newWeapon.lv_damage, c_fixedPrecisionAny));
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_SaveWeaponStats_Init () {
+    lib0777E5D9_gt_SaveWeaponStats = TriggerCreate("lib0777E5D9_gt_SaveWeaponStats_Func");
+    TriggerAddEventDialogControl(lib0777E5D9_gt_SaveWeaponStats, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: InitUnitPropsDialog
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_InitUnitPropsDialog_Func (bool testConds, bool runActions) {
+    int init_i;
+
+    int auto44CB76D1_ae;
+    int auto44CB76D1_ai;
+    int autoF312606D_ae;
+    int autoF312606D_ai;
+
+    // Variable Declarations
+    int lv_container;
+    int[16] lv_labels;
+    int[16] lv_boxes;
+    int lv_itemCounter;
+    int lv_rowCount;
+    int lv_columnCount;
+    int lv_paddingX;
+    int lv_paddingY;
+    int lv_itemSpacingX;
+    int lv_itemSpacingY;
+    int lv_labelX;
+    int lv_labelY;
+    int lv_editBoxX;
+    int lv_editBoxY;
+    int lv_i;
+    int lv_j;
+    int lv_offsetX;
+    int lv_offsetY;
+
+    // Variable Initialization
+    lv_container = lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_container;
+    for (init_i = 0; init_i <= 15; init_i += 1) {
+        lv_labels[init_i] = c_invalidDialogControlId;
+    }
+    for (init_i = 0; init_i <= 15; init_i += 1) {
+        lv_boxes[init_i] = c_invalidDialogControlId;
+    }
+    lv_rowCount = 4;
+    lv_columnCount = 3;
+    lv_paddingX = 20;
+    lv_paddingY = 20;
+    lv_itemSpacingX = 100;
+    lv_itemSpacingY = 50;
+    lv_labelX = 120;
+    lv_labelY = 20;
+    lv_editBoxX = 100;
+    lv_editBoxY = 40;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib0777E5D9_gf_SetUnitPropsUIStrings();
+    lib0777E5D9_gf_CreateUnitPanelCloseButton(32, 32, "Assets\\Textures\\ui_ingame_pingmenu_closebtnover.dds");
+    auto44CB76D1_ae = (lv_rowCount - 1);
+    auto44CB76D1_ai = 1;
+    lv_i = 0;
+    for ( ; ( (auto44CB76D1_ai >= 0 && lv_i <= auto44CB76D1_ae) || (auto44CB76D1_ai <= 0 && lv_i >= auto44CB76D1_ae) ) ; lv_i += auto44CB76D1_ai ) {
+        autoF312606D_ae = (lv_columnCount - 1);
+        autoF312606D_ai = 1;
+        lv_j = 0;
+        for ( ; ( (autoF312606D_ai >= 0 && lv_j <= autoF312606D_ae) || (autoF312606D_ai <= 0 && lv_j >= autoF312606D_ae) ) ; lv_j += autoF312606D_ai ) {
+            if ((lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_labelStrings[lv_itemCounter] != "")) {
+                lv_offsetX = ((lv_j * lv_itemSpacingX) + lv_paddingX);
+                lv_offsetY = ((lv_i * lv_itemSpacingY) + lv_paddingY);
+                lv_offsetY = (lv_offsetY + 80);
+                lv_labels[lv_itemCounter] = lib0777E5D9_gf_DialogAddLabel(lv_container, lv_labelX, lv_labelY, lv_offsetX, lv_offsetY, PlayerGroupAll(), c_anchorTopLeft, StringToText(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_labelStrings[lv_itemCounter]), "EditorPropertyList");
+                lv_boxes[lv_itemCounter] = lib0777E5D9_gf_DialogAddGenericItem(c_triggerControlTypeEditBox, lv_container, c_anchorTopLeft, lv_editBoxX, lv_editBoxY, (lv_offsetX - 5), (lv_offsetY + 15), PlayerGroupAll(), false);
+                libNtve_gf_SetDialogItemStyle(lv_boxes[lv_itemCounter], "EditorPropertyList", PlayerGroupAll());
+            }
+
+            lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_editBoxes[lv_itemCounter] = lv_boxes[lv_itemCounter];
+            lv_itemCounter += 1;
+        }
+    }
+    DialogControlSetEnabled(lv_boxes[6], PlayerGroupAll(), false);
+    DialogControlSetEnabled(lv_boxes[8], PlayerGroupAll(), false);
+    DialogControlSetEnabled(lv_boxes[9], PlayerGroupAll(), false);
+    lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_confirmButton = lib0777E5D9_gf_DialogAddButton(lv_container, lv_editBoxX, lv_editBoxY, ((lv_offsetX - 5) + lv_itemSpacingX), (lv_offsetY + 15), PlayerGroupAll(), c_anchorTopLeft, StringExternal("Param/Value/lib_0777E5D9_32B6E01C"), "Assets\\Textures\\ui_checkboxbutton_normalpressed_terran.dds");
+    libNtve_gf_SetDialogItemImage2(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_confirmButton, "Assets\\Textures\\ui_checkboxbutton_normaloverpressedover_terran.dds", PlayerGroupAll());
+    libNtve_gf_SetDialogItemStyle(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_confirmButton, "_ConfirmChanges", PlayerGroupAll());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_InitUnitPropsDialog_Init () {
+    lib0777E5D9_gt_InitUnitPropsDialog = TriggerCreate("lib0777E5D9_gt_InitUnitPropsDialog_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: InitWeaponDialog
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_InitWeaponDialog_Func (bool testConds, bool runActions) {
+    int init_i;
+
+    int auto1E5EFC81_ae;
+    int auto1E5EFC81_ai;
+    int auto5A6D7FED_ae;
+    int auto5A6D7FED_ai;
+
+    // Variable Declarations
+    int lv_container;
+    int[16] lv_labels;
+    int[16] lv_boxes;
+    int lv_itemCounter;
+    int lv_rowCount;
+    int lv_columnCount;
+    int lv_paddingX;
+    int lv_paddingY;
+    int lv_itemSpacingX;
+    int lv_itemSpacingY;
+    int lv_labelX;
+    int lv_labelY;
+    int lv_editBoxX;
+    int lv_editBoxY;
+    int lv_i;
+    int lv_j;
+    int lv_offsetX;
+    int lv_offsetY;
+    int lv_targetLabel;
+    int[2] lv_checkboxes;
+
+    // Variable Initialization
+    lv_container = lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_container;
+    for (init_i = 0; init_i <= 15; init_i += 1) {
+        lv_labels[init_i] = c_invalidDialogControlId;
+    }
+    for (init_i = 0; init_i <= 15; init_i += 1) {
+        lv_boxes[init_i] = c_invalidDialogControlId;
+    }
+    lv_rowCount = 4;
+    lv_columnCount = 3;
+    lv_paddingX = 20;
+    lv_paddingY = 20;
+    lv_itemSpacingX = 100;
+    lv_itemSpacingY = 50;
+    lv_labelX = 120;
+    lv_labelY = 20;
+    lv_editBoxX = 100;
+    lv_editBoxY = 40;
+    lv_targetLabel = c_invalidDialogControlId;
+    for (init_i = 0; init_i <= 1; init_i += 1) {
+        lv_checkboxes[init_i] = c_invalidDialogControlId;
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib0777E5D9_gf_SetWeaponPropsUIStrings();
+    lib0777E5D9_gf_CreateWeaponPropsCloseButton(32, 32, "Assets\\Textures\\ui_ingame_pingmenu_closebtnover.dds");
+    auto1E5EFC81_ae = (lv_rowCount - 1);
+    auto1E5EFC81_ai = 1;
+    lv_i = 0;
+    for ( ; ( (auto1E5EFC81_ai >= 0 && lv_i <= auto1E5EFC81_ae) || (auto1E5EFC81_ai <= 0 && lv_i >= auto1E5EFC81_ae) ) ; lv_i += auto1E5EFC81_ai ) {
+        auto5A6D7FED_ae = (lv_columnCount - 1);
+        auto5A6D7FED_ai = 1;
+        lv_j = 0;
+        for ( ; ( (auto5A6D7FED_ai >= 0 && lv_j <= auto5A6D7FED_ae) || (auto5A6D7FED_ai <= 0 && lv_j >= auto5A6D7FED_ae) ) ; lv_j += auto5A6D7FED_ai ) {
+            if ((lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_labelStrings[lv_itemCounter] != "")) {
+                lv_offsetX = ((lv_j * lv_itemSpacingX) + lv_paddingX);
+                lv_offsetY = ((lv_i * lv_itemSpacingY) + lv_paddingY);
+                lv_offsetY = (lv_offsetY + 80);
+                lv_labels[lv_itemCounter] = lib0777E5D9_gf_DialogAddLabel(lv_container, lv_labelX, lv_labelY, lv_offsetX, lv_offsetY, PlayerGroupAll(), c_anchorTopLeft, StringToText(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_labelStrings[lv_itemCounter]), "EditorPropertyList");
+                lv_boxes[lv_itemCounter] = lib0777E5D9_gf_DialogAddGenericItem(c_triggerControlTypeEditBox, lv_container, c_anchorTopLeft, lv_editBoxX, lv_editBoxY, (lv_offsetX - 5), (lv_offsetY + 15), PlayerGroupAll(), false);
+                libNtve_gf_SetDialogItemStyle(lv_boxes[lv_itemCounter], "EditorPropertyList", PlayerGroupAll());
+            }
+
+            lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_editBoxes[lv_itemCounter] = lv_boxes[lv_itemCounter];
+            lv_itemCounter += 1;
+        }
+    }
+    DialogControlSetEnabled(lv_boxes[3], PlayerGroupAll(), false);
+    DialogControlSetEnabled(lv_boxes[6], PlayerGroupAll(), false);
+    DialogControlSetEnabled(lv_boxes[7], PlayerGroupAll(), false);
+    lv_targetLabel = lib0777E5D9_gf_DialogAddLabel(lv_container, 100, 30, 20, 65, PlayerGroupAll(), c_anchorTopLeft, StringExternal("Param/Value/lib_0777E5D9_4B6879DC"), "EditorPropertyList");
+    lv_targetLabel = lib0777E5D9_gf_DialogAddLabel(lv_container, 100, 30, 155, 65, PlayerGroupAll(), c_anchorTopLeft, StringExternal("Param/Value/lib_0777E5D9_6E3ABC87"), "EditorPropertyList");
+    lv_targetLabel = lib0777E5D9_gf_DialogAddLabel(lv_container, 100, 30, 250, 65, PlayerGroupAll(), c_anchorTopLeft, StringExternal("Param/Value/lib_0777E5D9_7698F65B"), "EditorPropertyList");
+    lv_checkboxes[0] = lib0777E5D9_gf_DialogAddGenericItem(c_triggerControlTypeCheckBox, lv_container, c_anchorTopLeft, 16, 16, 130, 70, PlayerGroupAll(), false);
+    lv_checkboxes[1] = lib0777E5D9_gf_DialogAddGenericItem(c_triggerControlTypeCheckBox, lv_container, c_anchorTopLeft, 16, 16, 225, 70, PlayerGroupAll(), false);
+    lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[0] = lv_checkboxes[0];
+    lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_checkboxes[1] = lv_checkboxes[1];
+    lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_confirmButton = lib0777E5D9_gf_DialogAddButton(lv_container, lv_editBoxX, lv_editBoxY, ((lv_offsetX - 5) + (lv_itemSpacingX * 1)), ((lv_offsetY + 15) + lv_itemSpacingY), PlayerGroupAll(), c_anchorTopLeft, StringExternal("Param/Value/lib_0777E5D9_93CCE630"), "Assets\\Textures\\ui_checkboxbutton_normalpressed_terran.dds");
+    libNtve_gf_SetDialogItemImage2(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_confirmButton, "Assets\\Textures\\ui_checkboxbutton_normaloverpressedover_terran.dds", PlayerGroupAll());
+    libNtve_gf_SetDialogItemStyle(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_confirmButton, "_ConfirmChanges", PlayerGroupAll());
+    lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_addWeaponButton = lib0777E5D9_gf_DialogAddButton(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_container, 90, 30, 20, 10, PlayerGroupAll(), c_anchorBottomLeft, StringExternal("Param/Value/lib_0777E5D9_BCA47F34"), "Assets\\Textures\\ui_generic_button_normalpressed.dds");
+    libNtve_gf_SetDialogItemImage2(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_addWeaponButton, "Assets\\Textures\\ui_generic_button_normaloverpressedover.dds", PlayerGroupAll());
+    libNtve_gf_SetDialogItemStyle(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_addWeaponButton, "_ConfirmChanges", PlayerGroupAll());
+    lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_deleteWeaponButton = lib0777E5D9_gf_DialogAddButton(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_container, 90, 30, 120, 10, PlayerGroupAll(), c_anchorBottomLeft, StringExternal("Param/Value/lib_0777E5D9_1A025776"), "Assets\\Textures\\ui_generic_button_normalpressed_zerg.dds");
+    libNtve_gf_SetDialogItemImage2(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_deleteWeaponButton, "Assets\\Textures\\ui_generic_button_normaloverpressedover_zerg.dds", PlayerGroupAll());
+    libNtve_gf_SetDialogItemStyle(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_deleteWeaponButton, "_ConfirmChanges", PlayerGroupAll());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_InitWeaponDialog_Init () {
+    lib0777E5D9_gt_InitWeaponDialog = TriggerCreate("lib0777E5D9_gt_InitWeaponDialog_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: UnitSelected
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_UnitSelected_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_currentPlayer;
+    string lv_unitName;
+    unit lv_selectedUnit;
+    string lv_selectedUnitType;
+    string lv_weapon;
+    string lv_range;
+    string lv_damage;
+    string lv_atkSpeed;
+    string lv_dmgPt;
+    string lv_scanRange;
+    string lv_splashRadius;
+    string lv_delayMin;
+    string lv_delayMax;
+    int lv_i;
+
+    // Variable Initialization
+    lv_currentPlayer = PlayerGroupSingle(EventPlayer());
+    lv_unitName = "";
+    lv_selectedUnit = UnitGroupUnit(UnitGroupSelected(EventPlayer()), 1);
+    lv_range = "";
+    lv_damage = "";
+    lv_atkSpeed = "";
+    lv_dmgPt = "";
+    lv_scanRange = "";
+    lv_splashRadius = "";
+    lv_delayMin = "";
+    lv_delayMax = "";
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_container, lv_currentPlayer, true);
+    DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_container, lv_currentPlayer, false);
+    DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_closeButtonContainer, lv_currentPlayer, false);
+    DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[0], lv_currentPlayer, false);
+    DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[1], lv_currentPlayer, false);
+    DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[2], lv_currentPlayer, false);
+    DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_tech.lv_containers[3], lv_currentPlayer, false);
+    DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_container, lv_currentPlayer, false);
+    DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_playerList.lv_container, lv_currentPlayer, false);
+    if ((UnitGroupCount(UnitGroupSelected(EventPlayer()), c_unitCountAlive) == 1)) {
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_container, lv_currentPlayer, true);
+        lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_selectedUnitProperties.lv_unit = EventUnit();
+        lib0777E5D9_gf_UpdateUnitProperties(EventUnit(), lv_currentPlayer);
+        lv_selectedUnitType = UnitGetType(EventUnit());
+        lv_weapon = (CatalogFieldValueGet(c_gameCatalogUnit, lv_selectedUnitType, "WeaponArray[" + IntToString(0) + "].Link", c_playerAny));
+        if ((lv_weapon == ""  )) {
+            DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_container, lv_currentPlayer, false);
+        }
+        else {
+            DialogSetPosition(lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_container, c_anchorBottomLeft, (DialogGetOffsetX(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_container) + 370), DialogGetOffsetY(lib0777E5D9_gv_app.lv_interface.lv_unitPanel.lv_container));
+            lib0777E5D9_gf_GetTargetFilters(lv_weapon, UnitGetOwner(lv_selectedUnit), EventPlayer());
+            lib0777E5D9_gf_UpdateUnitWeaponDropdown(lv_selectedUnit, lib0777E5D9_gv_app.lv_interface.lv_weaponProperties.lv_weaponDropdown);
+            lib0777E5D9_gf_UpdateWeaponProperties(lv_weapon, lv_unitName, lv_selectedUnitType, EventPlayer());
+        }
+    }
+    else {
+        lib0777E5D9_gf_MultipleUnitsSelected(UnitGroupSelected(EventPlayer()), EventPlayer());
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_UnitSelected_Init () {
+    lib0777E5D9_gt_UnitSelected = TriggerCreate("lib0777E5D9_gt_UnitSelected_Func");
+    TriggerAddEventUnitSelected(lib0777E5D9_gt_UnitSelected, null, c_playerAny, true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: TabPressed
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_TabPressed_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_newCursorPosition;
+    int lv_player;
+
+    // Variable Initialization
+    lv_newCursorPosition = "";
+    lv_player = EventPlayer();
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((DialogIsVisible(lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_container, lv_player) == true) && (lib0777E5D9_gv_app.lv_players[lv_player].lv_isPlacingUnits == false)) {
+        lib0777E5D9_gf_ToggleGameUI(true, PlayerGroupSingle(lv_player));
+        lib0777E5D9_gf_UpdateCursorModelPositon(lv_player);
+        lib0777E5D9_gv_app.lv_players[lv_player].lv_isPlacingUnits = true;
+    }
+    else {
+        lib0777E5D9_gf_ToggleGameUI(false, PlayerGroupSingle(lv_player));
+        ActorSend(lib0777E5D9_gf_GetMouseActor(lv_player), libNtve_gf_Destroy());
+        lib0777E5D9_gv_app.lv_players[lv_player].lv_isPlacingUnits = false;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_TabPressed_Init () {
+    lib0777E5D9_gt_TabPressed = TriggerCreate("lib0777E5D9_gt_TabPressed_Func");
+    TriggerAddEventKeyPressed(lib0777E5D9_gt_TabPressed, c_playerAny, lib0777E5D9_gf_GetUnitPlacementToggleKey(), true, c_keyModifierStateIgnore, c_keyModifierStateIgnore, c_keyModifierStateIgnore);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: DeletePressed
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_DeletePressed_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+
+    // Variable Initialization
+    lv_player = EventPlayer();
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitGroupLoopBegin(UnitGroupSelected(lv_player));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitKill(UnitGroupLoopCurrent());
+    }
+    UnitGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_DeletePressed_Init () {
+    lib0777E5D9_gt_DeletePressed = TriggerCreate("lib0777E5D9_gt_DeletePressed_Func");
+    TriggerAddEventKeyPressed(lib0777E5D9_gt_DeletePressed, c_playerAny, lib0777E5D9_gf_GetDeleteKey(), true, c_keyModifierStateIgnore, c_keyModifierStateIgnore, c_keyModifierStateIgnore);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: ToggleMoveUnit
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_ToggleMoveUnit_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if (lib0777E5D9_gf_IsMovingUnits(EventPlayer()) && (lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_isPlacingUnits == false)) {
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_messages.lv_container, PlayerGroupSingle(EventPlayer()), false);
+        lib0777E5D9_gf_RemoveMessage();
+        lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_isMovingUnits = false;
+    }
+    else {
+        DialogSetVisible(lib0777E5D9_gv_app.lv_interface.lv_messages.lv_container, PlayerGroupSingle(EventPlayer()), true);
+        lib0777E5D9_gf_AddMessage(StringExternal("Param/Value/lib_0777E5D9_3A2775BE"), "_Message", PlayerGroupSingle(EventPlayer()));
+        lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_isMovingUnits = true;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_ToggleMoveUnit_Init () {
+    lib0777E5D9_gt_ToggleMoveUnit = TriggerCreate("lib0777E5D9_gt_ToggleMoveUnit_Func");
+    TriggerAddEventKeyPressed(lib0777E5D9_gt_ToggleMoveUnit, c_playerAny, lib0777E5D9_gf_GetMoveUnitToggle(), true, c_keyModifierStateIgnore, c_keyModifierStateIgnore, c_keyModifierStateExclude);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: UnitListClicked
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_UnitListClicked_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_raceID;
+    int lv_typeID;
+    int lv_unitID;
+    string lv_unitName;
+
+    // Variable Initialization
+    lv_unitID = (DialogControlGetSelectedItem(EventDialogControl(), EventPlayer()) - 1);
+    lv_unitName = "";
+
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+
+        if (!((DialogControlGetType(EventDialogControl()) == c_triggerControlTypeListBox))) {
+            return false;
+        }
+
+        if (!((DialogControlGetDialog(EventDialogControl()) == lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_container))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_raceID = (DialogControlGetSelectedItem(lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_raceDropdown, EventPlayer()) - 1);
+    lv_typeID = (DialogControlGetSelectedItem(lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_typeDropdown, EventPlayer()) - 1);
+    lv_unitName = (lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_races[lv_raceID].lv_types[lv_typeID].lv_unitData[lv_unitID].lv_name);
+    lib0777E5D9_gv_app.lv_interface.lv_unitList.lv_selectedUnit = lv_unitName;
+    ActorSend(lib0777E5D9_gf_GetMouseActor(EventPlayer()), libNtve_gf_Destroy());
+    lib0777E5D9_gf_SetMouseModel(EventPlayer(), (lv_unitName), 1.0, 0.5, Color(100.00, 0.00, 0.00));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_UnitListClicked_Init () {
+    lib0777E5D9_gt_UnitListClicked = TriggerCreate("lib0777E5D9_gt_UnitListClicked_Func");
+    TriggerAddEventDialogControl(lib0777E5D9_gt_UnitListClicked, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeSelectionChanged);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: MouseMoved
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_MouseMoved_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(lib0777E5D9_gf_HasAccess(EventPlayer()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib0777E5D9_gf_SetMouseCoords(EventPlayer());
+    if (lib0777E5D9_gf_IsCursorEnabled(EventPlayer())) {
+        lib0777E5D9_gf_UpdateCursorModelPositon(EventPlayer());
+    }
+
+    if (lib0777E5D9_gf_IsMovingUnits(EventPlayer())) {
+        UnitGroupLoopBegin(UnitGroupSelected(EventPlayer()));
+        for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+            UnitSetPosition(UnitGroupLoopCurrent(), lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_cursorPosition, false);
+        }
+        UnitGroupLoopEnd();
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_MouseMoved_Init () {
+    lib0777E5D9_gt_MouseMoved = TriggerCreate("lib0777E5D9_gt_MouseMoved_Func");
+    TriggerAddEventMouseMoved(lib0777E5D9_gt_MouseMoved, c_playerAny);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: LeftClickUp
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_LeftClickUp_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((lib0777E5D9_gf_HasAccess(EventPlayer()) == true))) {
+            return false;
+        }
+
+        if (!(lib0777E5D9_gf_IsCursorEnabled(EventPlayer()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_leftClickPressed = false;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_LeftClickUp_Init () {
+    lib0777E5D9_gt_LeftClickUp = TriggerCreate("lib0777E5D9_gt_LeftClickUp_Func");
+    TriggerAddEventMouseClicked(lib0777E5D9_gt_LeftClickUp, c_playerAny, c_mouseButtonLeft, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: LeftClickDown
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_gt_LeftClickDown_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((lib0777E5D9_gf_HasAccess(EventPlayer()) == true))) {
+            return false;
+        }
+
+        if (!(lib0777E5D9_gf_IsCursorEnabled(EventPlayer()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib0777E5D9_gv_app.lv_players[EventPlayer()].lv_leftClickPressed = true;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib0777E5D9_gt_LeftClickDown_Init () {
+    lib0777E5D9_gt_LeftClickDown = TriggerCreate("lib0777E5D9_gt_LeftClickDown_Func");
+    TriggerAddEventMouseClicked(lib0777E5D9_gt_LeftClickDown, c_playerAny, c_mouseButtonLeft, true);
+}
+
+void lib0777E5D9_InitTriggers () {
+    lib0777E5D9_gt_Initialize_Init();
+    lib0777E5D9_gt_InitAbilityMenu_Init();
+    lib0777E5D9_gt_ToggleAbilityMenu_Init();
+    lib0777E5D9_gt_ToggleCastingAbilities_Init();
+    lib0777E5D9_gt_AbilityCast_Init();
+    lib0777E5D9_gt_InitWeaponsList_Init();
+    lib0777E5D9_gt_SwitchWeaponLists_Init();
+    lib0777E5D9_gt_ToggleWeaponsList_Init();
+    lib0777E5D9_gt_UpdateWeaponProperties_Init();
+    lib0777E5D9_gt_AddWeaponToUnit_Init();
+    lib0777E5D9_gt_RemoveWeaponFromUnit_Init();
+    lib0777E5D9_gt_InitUnitListDialog_Init();
+    lib0777E5D9_gt_ShowUnitList_Init();
+    lib0777E5D9_gt_SwitchUnitLists_Init();
+    lib0777E5D9_gt_InitUpgradeDialog_Init();
+    lib0777E5D9_gt_ToggleUpgradeUI_Init();
+    lib0777E5D9_gt_InitMessageArea_Init();
+    lib0777E5D9_gt_InitPlayerDropdown_Init();
+    lib0777E5D9_gt_HandlePlayerDropDown_Init();
+    lib0777E5D9_gt_ClearChat_Init();
+    lib0777E5D9_gt_EventHandler_Init();
+    lib0777E5D9_gt_CloseButtonEvents_Init();
+    lib0777E5D9_gt_UpgradeButtonEvents_Init();
+    lib0777E5D9_gt_UpdateUpgradeDialogStatus_Init();
+    lib0777E5D9_gt_SaveUnitStats_Init();
+    lib0777E5D9_gt_SaveWeaponStats_Init();
+    lib0777E5D9_gt_InitUnitPropsDialog_Init();
+    lib0777E5D9_gt_InitWeaponDialog_Init();
+    lib0777E5D9_gt_UnitSelected_Init();
+    lib0777E5D9_gt_TabPressed_Init();
+    lib0777E5D9_gt_DeletePressed_Init();
+    lib0777E5D9_gt_ToggleMoveUnit_Init();
+    lib0777E5D9_gt_UnitListClicked_Init();
+    lib0777E5D9_gt_MouseMoved_Init();
+    lib0777E5D9_gt_LeftClickUp_Init();
+    lib0777E5D9_gt_LeftClickDown_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib0777E5D9_InitLib_completed = false;
+
+void lib0777E5D9_InitLib () {
+    if (lib0777E5D9_InitLib_completed) {
+        return;
+    }
+
+    lib0777E5D9_InitLib_completed = true;
+
+    lib0777E5D9_InitLibraries();
+    lib0777E5D9_InitVariables();
+    lib0777E5D9_InitCustomScript();
+    lib0777E5D9_InitTriggers();
+}
+

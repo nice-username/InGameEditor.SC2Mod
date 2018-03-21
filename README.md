@@ -1,0 +1,1 @@
+# InGameEditor.SC2Mod

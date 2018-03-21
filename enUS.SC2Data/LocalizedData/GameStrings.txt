@@ -1,0 +1,48 @@
+﻿Attribute001/Desc=Decides if player has access to mod features or not
+Attribute001/Name=Mod access
+Attribute001/Value001/Desc=Regular, boring SCII player.
+Attribute001/Value001/Name=Player
+Attribute001/Value002/Desc=Has access to mod features.
+Attribute001/Value002/Name=Editor
+DocInfo/HowToPlayBasic00=Help menu lists hotkeys
+DocInfo/Name=JoeyTrials
+DocInfo/PatchNote001=added weapon target filters
+DocInfo/PatchNote002=cleaned up dialog show/hide events
+DocInfo/PatchNote003=added ability list
+Param/Value/lib_0777E5D9_06D7F585= (
+Param/Value/lib_0777E5D9_1A025776=<img path="EditorData\Images\ToolbarDeleteValue.tga" height="12" width="12" />del
+Param/Value/lib_0777E5D9_2D22F17C=Terran
+Param/Value/lib_0777E5D9_32B6E01C=apply<img path="EditorData/Images/CheckMark.tga" width="16" height="16"/>
+Param/Value/lib_0777E5D9_33169B49=Destructibles
+Param/Value/lib_0777E5D9_3A2775BE=Moving units [<c val="00FF00">Enabled</c>]
+Param/Value/lib_0777E5D9_43295BB1=cast
+Param/Value/lib_0777E5D9_4481B692=)
+Param/Value/lib_0777E5D9_4B6879DC=targets
+Param/Value/lib_0777E5D9_5668ED35=add weapon
+Param/Value/lib_0777E5D9_573C12ED=Press help button [default: F12] for hotkeys
+Param/Value/lib_0777E5D9_5B9F190F=cast
+Param/Value/lib_0777E5D9_62366D81= <c val="FF0000">disabled</c>.
+Param/Value/lib_0777E5D9_6691A10D=Zerg
+Param/Value/lib_0777E5D9_6E3ABC87=air
+Param/Value/lib_0777E5D9_703613AB=Protoss
+Param/Value/lib_0777E5D9_7698F65B=ground
+Param/Value/lib_0777E5D9_77D82D79=Structures
+Param/Value/lib_0777E5D9_8C251D02=Resources
+Param/Value/lib_0777E5D9_93CCE630=apply<img path="EditorData/Images/CheckMark.tga" width="16" height="16"/>
+Param/Value/lib_0777E5D9_9AF23144=Hotkeys
+Param/Value/lib_0777E5D9_B89CF419=Destructibles
+Param/Value/lib_0777E5D9_B9AFEFA8= <c val="00FF00">enabled</c>.
+Param/Value/lib_0777E5D9_BCA47F34=<img path="EditorData\Images\ToolbarAddValue.tga" height="12" width="12" />add
+Param/Value/lib_0777E5D9_CEDCF0F9=Neutral
+Param/Value/lib_0777E5D9_D03677EC=Units
+Param/Value/lib_0777E5D9_D0448326=[ <c val="C8FA96">Select units</c> ] to edit their properties.<n/>[ <c val="C8FA96">Select one unit</c> ] to edit its weapon.<n/><n/>[ <c val="C8FA96">U</c> ]<n/>Change player upgrades/tech<n/><n/>[ <c val="C8FA96">M</c> ]<n/>Toggle moving selected units on/off<n/><n/>[ <c val="C8FA96">.</c> ]<n/>Toggle unit list on/off<n/><n/>[ <c val="C8FA96">Tab</c> ] <c val="FFFF00">when unit list is open</c><n/>Toggle placing units on/off<n/><n/>[ <c val="C8FA96">,</c> ]<n/>Toggle ability list on/off<n/><n/>[ <c val="C8FA96">Backspace </c>]<n/>Remove selected units from the map<n/>
+Param/Value/lib_0777E5D9_D5D72163=
+Param/Value/lib_0777E5D9_DAC6AA99=cast
+Param/Value/lib_0777E5D9_E0556F58=
+Param/Value/lib_0777E5D9_F132BA55=Selected units [
+Param/Value/lib_0777E5D9_F314BF7C=Resources
+Param/Value/lib_0777E5D9_F5A98F59=stop casting
+Param/Value/lib_0777E5D9_FA2E9603=</c>
+Param/Value/lib_0777E5D9_FECCE875=]
+Param/Value/lib_0777E5D9_FF9AA2C2=Name
+Unit/LifeArmorName/ProtossArmor=Protoss Armor

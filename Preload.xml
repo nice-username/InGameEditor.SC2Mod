@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Preload>
+<Asset path="assets\textures\ui_generic_button_normalpressed_zerg.dds" Type="Image"/>
+<Asset path="assets\textures\ui_mission_leaderboard_frame_unit.dds" Type="Image"/>
+<Asset path="editordata\images\triggerlabels\question.tga" Type="Image"/>
+<Asset path="assets\textures\ui_loadingscreen_playerloadingbar_highlighted.dds" Type="Image"/>
+<Asset path="assets\textures\ui_ingame_pingmenu_closebtnover.dds" Type="Image"/>
+<Asset path="assets\textures\ui_tooltip_frame_protoss.dds" Type="Image"/>
+<Asset path="assets\textures\ui_checkboxbutton_normalpressed_terran.dds" Type="Image"/>
+<Asset path="assets\textures\ui_research_frame_contentbox.dds" Type="Image"/>
+<Asset path="assets\textures\ui_generic_button_normalpressed.dds" Type="Image"/>
+<Asset path="assets\textures\ui_tooltip_frame_storymode.dds" Type="Image"/>
+<Actor id="SYSTEM_ActorConfig"/>
+<Sound id="Protoss_BuildingPlacementSmall"/>
+</Preload>

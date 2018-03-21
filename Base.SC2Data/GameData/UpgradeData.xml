@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CUpgrade id="IncreasedRange">
+        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-rangeincrease.dds"/>
+    </CUpgrade>
+    <CUpgrade id="InfestorEnergyUpgrade">
+        <EditorCategories value="Race:Zerg,UpgradeType:Talents"/>
+    </CUpgrade>
+    <CUpgrade id="LiberatorAGRangeUpgrade">
+        <EditorCategories value="Race:Terran,UpgradeType:SpellResearch"/>
+    </CUpgrade>
+    <CUpgrade id="LocustLifetimeIncrease">
+        <EditorCategories value="Race:Zerg,UpgradeType:Talents"/>
+    </CUpgrade>
+</Catalog>

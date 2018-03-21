@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <!--                                                                                         -->
+    <!-- Arbiter ........................................................................... -->
+    <!--                                                                                         -->
+    <CUnit id="ArbiterMP">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+    </CUnit>
+    <!--                                                                                         -->
+    <!-- Devourer ........................................................................... -->
+    <!--                                                                                         -->
+    <CUnit id="DevourerMP">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+    </CUnit>
+    <!--                                                                                         -->
+    <!-- Guardian .............................................................................. -->
+    <!--                                                                                         -->
+    <CUnit id="GuardianMP">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+    </CUnit>
+    <!--                                                                                         -->
+    <!-- Scout ........................................................................... -->
+    <!--                                                                                         -->
+    <CUnit id="ScoutMP">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+    </CUnit>
+    <CUnit id="WarHound">
+        <EditorCategories value="ObjectFamily:Melee,ObjectType:Unit"/>
+    </CUnit>
+    <CUnit id="WidowMine">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+    </CUnit>
+    <CUnit id="WidowMineBurrowed">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+    </CUnit>
+</Catalog>
